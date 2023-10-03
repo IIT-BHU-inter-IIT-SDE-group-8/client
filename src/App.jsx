@@ -7,6 +7,8 @@ import { ChannelListContainer, ChannelContainer, Auth } from './components';
 
 import 'stream-chat-react/dist/css/index.css';
 import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Home from './pages/Home';
 
 const cookies = new Cookies();
 
@@ -16,7 +18,7 @@ const authToken = cookies.get("token");
 
 const client = StreamChat.getInstance(apiKey);
 
-if(authToken) {
+if (authToken) {
     client.connectUser({
         id: cookies.get('userId'),
         name: cookies.get('username'),
@@ -33,26 +35,30 @@ const App = () => {
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
-    if(!authToken) return <Auth />
+    // if (!authToken) return <Auth />
 
     return (
-        <div className="app__wrapper">
-            <Chat client={client} theme="team light">
-                <ChannelListContainer 
-                    isCreating={isCreating}
-                    setIsCreating={setIsCreating}
-                    setCreateType={setCreateType}
-                    setIsEditing={setIsEditing}
-                />
-                <ChannelContainer 
-                    isCreating={isCreating}
-                    setIsCreating={setIsCreating}
-                    isEditing={isEditing}
-                    setIsEditing={setIsEditing}
-                    createType={createType}
-                />
-            </Chat>
-        </div>
+        // <div className="app__wrapper">
+            <Routes>
+                <Route path='/chat' Component={<Chat client={client} theme="team light">
+                    <ChannelListContainer
+                        isCreating={isCreating}
+                        setIsCreating={setIsCreating}
+                        setCreateType={setCreateType}
+                        setIsEditing={setIsEditing}
+                    />
+                    <ChannelContainer
+                        isCreating={isCreating}
+                        setIsCreating={setIsCreating}
+                        isEditing={isEditing}
+                        setIsEditing={setIsEditing}
+                        createType={createType}
+                    />
+                </Chat>}></Route>
+                <Route path='/' Component={Home}></Route>
+            </Routes>
+        // </div>
+
     );
 }
 
