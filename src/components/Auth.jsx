@@ -1,153 +1,152 @@
-import React, { useState } from 'react';
-import Cookies from 'universal-cookie';
-import axios from 'axios';
+import React, {useState} from "react";
+import '../auth.css';
+import authImage from '../assets/signup1.jpg';
+import logoImage from '../assets/logo.png';
+import gSignIn from '../assets/googleSignIn.png';
+import { Link } from "react-router-dom";
 
-import signinImage from '../assets/signup.jpg';
+const Auth1 = () => {
 
-const cookies = new Cookies();
+    const signUpUrl = 'http://localhost:4000/users';
+    const loginUrl = 'http://localhost:4000/login';
+    const googleSignUpUrl = 'http://localhost:4000/auth/google';
 
-const initialState = {
-    fullName: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
-    phoneNumber: '',
-    avatarURL: '',
-}
+    const [isSignUp, setIsSignUp] = useState(true);
+    const [formData, setFormData] = useState({
+        name : '',
+        email: '',
+        password: ''
+    })
+    const {name, email, password} = formData;
 
-const Auth = () => {
-    const [form, setForm] = useState(initialState);
-    const [isSignup, setIsSignup] = useState(true);
+    let requestData = {};
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+    if (isSignUp) {
+      requestData = {
+        name,
+        email,
+        password,
+      };
+    } else {
+      requestData = {
+        email,
+        password,
+      };
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const url = isSignUp ? signUpUrl : loginUrl;
 
-        const { username, password, phoneNumber, avatarURL } = form;
-
-        const URL = 'https://flight-websocket.onrender.com/';
-
-        const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-            username, password, fullName: form.fullName, phoneNumber, avatarURL,
+    const handleInputChange = (event) => {
+        const {name, value} = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
         });
+    }
 
-        cookies.set('token', token);
-        cookies.set('username', username);
-        cookies.set('fullName', fullName);
-        cookies.set('userId', userId);
+    const handleSignUp = async (event) => {
+        event.preventDefault();
 
-        if(isSignup) {
-            cookies.set('phoneNumber', phoneNumber);
-            cookies.set('avatarURL', avatarURL);
-            cookies.set('hashedPassword', hashedPassword);
+        try {
+            const response = await fetch(url,{
+                method:'POST',
+                headers: {
+                    'Content-Type':'application/json',
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            if(response.ok)
+            {
+                console.log('signUp successful');
+            }
+            else
+            {
+                console.log('signUp failed');
+            }
+        } catch (error) {
+            console.log(error);
         }
-
-        window.location.reload();
     }
 
-    const switchMode = () => {
-        setIsSignup((prevIsSignup) => !prevIsSignup);
+    const swithSignUpMode = () => {
+        setIsSignUp((prevIsSignUp) => !(prevIsSignUp))
     }
 
-    return (
-        <div className="auth__form-container">
-            <div className="auth__form-container_fields">
-                <div className="auth__form-container_fields-content">
-                    <p>{isSignup ? 'Sign Up' : 'Sign In'}</p>
-                    <form onSubmit={handleSubmit}>
-                        {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
-                                <label htmlFor="fullName">Full Name</label>
-                                <input 
-                                    name="fullName" 
-                                    type="text"
-                                    placeholder="Full Name"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        )}
-                        <div className="auth__form-container_fields-content_input">
-                            <label htmlFor="username">Username</label>
-                                <input 
-                                    name="username" 
-                                    type="text"
-                                    placeholder="Username"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
-                                <label htmlFor="phoneNumber">Phone Number</label>
-                                <input 
-                                    name="phoneNumber" 
-                                    type="text"
-                                    placeholder="Phone Number"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        )}
-                        {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
-                                <label htmlFor="avatarURL">Avatar URL</label>
-                                <input 
-                                    name="avatarURL" 
-                                    type="text"
-                                    placeholder="Avatar URL"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        )}
-                        <div className="auth__form-container_fields-content_input">
-                                <label htmlFor="password">Password</label>
-                                <input 
-                                    name="password" 
-                                    type="password"
-                                    placeholder="Password"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
-                                <label htmlFor="confirmPassword">Confirm Password</label>
-                                <input 
-                                    name="confirmPassword" 
-                                    type="password"
-                                    placeholder="Confirm Password"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            )}
-                        <div className="auth__form-container_fields-content_button">
-                            <button>{isSignup ? "Sign Up" : "Sign In"}</button>
+    return(
+        <>
+        <div>
+            <div className="mainContainer">
+                <div className="imageContainer" style={{backgroundColor: "black"}}>
+                    <img className="imageContainer" src={authImage} alt="authImage" />
+                </div>
+                <div className="inputContainer">
+                    <div>
+                        <div className="logoContainer">
+                            <img style={{height: '80px', marginBottom: '10px'}} className="logoImage" src={logoImage} alt="logoImage" />
                         </div>
-                    </form>
-                    <div className="auth__form-container_fields-account">
-                        <p>
-                            {isSignup
-                             ? "Already have an account?" 
-                             : "Don't have an account?"
-                             }
-                             <span onClick={switchMode}>
-                             {isSignup ? 'Sign In' : 'Sign Up'}
-                             </span>
-                        </p>
+                        <div className="inputFields">
+                            <form style={{display:"flex", flexDirection:'column'}} onSubmit={handleSignUp}>
+                            {isSignUp && (
+                                <input
+                                className="input dimension"
+                                name="name"
+                                type="text"
+                                placeholder="Username"
+                                onChange={handleInputChange}
+                                required />
+                            )}
+                            <input
+                            className="input dimension"
+                            type="email" 
+                            name="email" 
+                            placeholder="Email"
+                            onChange={handleInputChange}
+                            required/>
+                            <input
+                            className="input dimension" 
+                            type="password"
+                            name="password" 
+                            placeholder="Password"
+                            onChange={handleInputChange}
+                            required
+                            />
+                            {isSignUp && (
+                                <input 
+                                className="input dimension"
+                                type="password"
+                                name="password" 
+                                placeholder="Confirm Password"
+                                required
+                                />
+                            )}
+                            <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Sign In"}</button>
+                            </form>
+                            <p>
+                             {isSignUp
+                              ? "Already have an account ?" 
+                              : "Don't have an account ?"
+                              }
+                              <span style={{cursor:'pointer'}} onClick={swithSignUpMode}>
+                              {isSignUp ? ' Sign In' : ' Sign Up'}
+                              </span>
+                         </p>
+                        </div>
+                        <div className="OrContainer input">
+                            <div className="horizontalLine input" style={{margin: '8px'}}></div>
+                            OR
+                            <div className="horizontalLine" style={{margin: '8px'}}></div>
+                        </div>
+                        <div className="googleSignUpContainer">
+                            <Link to={googleSignUpUrl}>
+                            <img src={gSignIn} style={{height: '6vh', margin: '8px', cursor:'pointer'}} alt="" /></Link>
+                        </div>
                     </div>
-                </div> 
-            </div>
-            <div className="auth__form-container_image">
-                <img src={signinImage} alt="sign in" />
+                </div>
             </div>
         </div>
+        </>
     )
 }
 
-export default Auth
+export default Auth1;
