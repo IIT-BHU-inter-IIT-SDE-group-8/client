@@ -5,13 +5,69 @@ import logoImage from '../assets/logo.png'
 
 const Auth1 = () => {
 
-    const url = 'http://localhost:4000/bio';
+    const url = 'http://localhost:4000/users/bio';
+    const authToken = document.cookie
+    .split('; ')
+    .find((cookie) => cookie.startsWith('authtoken='))
+    ?.split('=')[1];
 
-    const [selectedFile, setSelectedFile] = useState(null);
+    let requestData = {};
 
-    const handleFileInputChange = (event) => {
-        const file = event.target.files[0];
-        setSelectedFile(file);
+    const [formData, setFormData] = useState({
+        phone: 0,
+        location: '',
+        vehicle: '',
+        bio: '',
+        image: ''
+    })
+
+    const {phone, location, vehicle, bio, image} = formData;
+
+    requestData = {
+        phone,
+        location,
+        vehicle,
+        bio,
+        image
+    }
+
+    console.log("stringified data is:",JSON.stringify(requestData));
+
+    console.log("data is:",requestData)
+
+    const handleInputChange = (event) => {
+        const {name, value} = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch(url,{
+               method:"POST",
+               headers:{
+                    'Content-Type':'application/json',
+                    'auth-token':  authToken,
+               },
+               body: JSON.stringify(requestData)
+            })
+
+            if(response.ok){
+                console.log("bio entered successfully");
+            }
+            else
+            {
+                console.log("Unable to enter bio")
+            }
+        } catch (error) {
+            console.log("error while entering bio:",error);
+        }
+
+        
     }
 
     return (
@@ -22,28 +78,31 @@ const Auth1 = () => {
                         <img className="imageContainer" src={authImage} alt="authImage" />
                     </div>
                     <div className="inputContainer">
-                        
+                        <form onSubmit={handleSubmit}>
                             <div className="logoContainer">
                                 <img style={{ height: '80px', marginBottom: '10px' }} className="logoImage" src={logoImage} alt="logoImage" />
                             </div>
-                            <h3>Bio</h3>
                             <div className="inputFields">
+                            <h3>Bio</h3>
                                 <input
                                     className="input dimension"
                                     name="phone"
                                     type="number"
+                                    onChange={handleInputChange}
                                     placeholder="Phone Number"
                                     required />
                                 <input
                                     className="input dimension"
                                     name="location"
                                     type="text"
+                                    onChange={handleInputChange}
                                     placeholder="Favourite Location"
                                     required />
                                 <input
                                     className="input dimension"
                                     type="text"
                                     name="vehicle"
+                                    onChange={handleInputChange}
                                     placeholder="Preferred Vehicle"
                                     required
                                 />
@@ -51,21 +110,21 @@ const Auth1 = () => {
                                     className="input dimension"
                                     type="text"
                                     name="bio"
+                                    onChange={handleInputChange}
                                     placeholder="Something About You"
                                     required
                                 />
-                                <label style={{marginBottom:'1.5vh', fontFamily:'sans-serif', fontWeight:'bold'}} htmlFor="profilePhote">Upload Profile Photo</label>
                                 <input
-                                    // className="input dimension"
-                                    name="profilePhoto"
-                                    type="file"
-                                    style={{fontSize:'2vh', fontFamily:'sans-serif',height:'5vh',width:'18vw', fontWeight:'bold'}}
-                                    accept="image/*"
-                                    // placeholder="Upload your profile photo"
-                                    onChange={handleFileInputChange}
-                                    required />
-                                <button className="btn">Finish</button>
+                                    className="input dimension"
+                                    type="text"
+                                    name="image"
+                                    onChange={handleInputChange}
+                                    placeholder="Enter image Url"
+                                    required
+                                />
+                                <button type="submit" className="btn">Finish</button>
                             </div>
+                          </form>
                     </div>
                 </div>
             </div>

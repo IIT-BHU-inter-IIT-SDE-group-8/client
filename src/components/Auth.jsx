@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import '../auth.css';
+import Cookies from "universal-cookie";
 import authImage from '../assets/signup1.jpg';
 import logoImage from '../assets/logo.png';
 import gSignIn from '../assets/googleSignIn.png';
@@ -7,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const Auth1 = () => {
 
+    const cookies = new Cookies();
     const signUpUrl = 'http://localhost:4000/users';
     const loginUrl = 'http://localhost:4000/login';
     const googleSignUpUrl = 'http://localhost:4000/auth/google';
@@ -58,7 +60,9 @@ const Auth1 = () => {
 
             if(response.ok)
             {
-                console.log('signUp successful');
+                const json = await response.json();
+                const authToken = json.authToken;
+                cookies.set('authtoken',authToken);
             }
             else
             {
