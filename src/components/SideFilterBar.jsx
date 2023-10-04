@@ -19,7 +19,7 @@ const SideFilterBar = () => {
                     <p style={{padding:'0', margin:'0', position:'absolute', fontSize:'1vw'}}>Input time range between which you are searching for trip</p>
                 </div>
                 <div className="search">
-                    <img style={{height:'2vw'}} src={searchIcon} alt="searcg" />
+                    <img style={{height:'2vw'}} src={searchIcon} alt="search" />
                 </div>
             </div>
          </div>
