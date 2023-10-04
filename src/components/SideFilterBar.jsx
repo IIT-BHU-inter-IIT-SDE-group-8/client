@@ -11,10 +11,13 @@ const SideFilterBar = () => {
                 <input className="tripInput leftTripInput" type="text" placeholder="Origin"/>
                 <input className="tripInput" type="text" placeholder="Destination"/>
                 <input className="tripInput" type="text" placeholder="Date"/>
-                {/* <label>Input time range between which you are searching for trip</label> */}
-                <input className="tripInput" type="text" placeholder="from time"/>
-                <input className="tripInput rightTripInputContainer" type="text" placeholder="to time"/>
-                
+                <div>
+                    <div style={{display:'flex'}}>
+                        <input className="tripInput" type="text" placeholder="from time"/>
+                        <input className="tripInput rightTripInputContainer" type="text" placeholder="to time"/>
+                    </div>
+                    <p style={{padding:'0', margin:'0', position:'absolute', fontSize:'1vw'}}>Input time range between which you are searching for trip</p>
+                </div>
                 <div className="search">
                     <img style={{height:'2vw'}} src={searchIcon} alt="searcg" />
                 </div>
