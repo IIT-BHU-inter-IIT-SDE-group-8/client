@@ -68,7 +68,7 @@ const App = () => {
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
                 <Route path='/Bio' element = {<Bio/>}/>
-                <Route path='/AllTrips' element={<AllTrips/>}/>
+                <Route path='/AllTrips' element={<AllTrips groupName = {"Trips of friend and Community"}/>}/>
                 <Route path='/MyTrip' element={<MyTrip/>}/>
                 <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>

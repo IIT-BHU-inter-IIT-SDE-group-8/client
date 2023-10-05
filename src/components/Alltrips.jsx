@@ -5,7 +5,7 @@ import SideFilterBar from "./SideFilterBar";
 import BottomNavbar from './BottomNavbar';
 const {getCookieValue} = require('./cookieFunc')
 
-const AllTrips = () => {
+const AllTrips = ({groupName}) => {
 
   const authToken = getCookieValue(document.cookie,'authtoken');
   const userDataCookie = getCookieValue(document.cookie,'data');
@@ -30,8 +30,6 @@ const AllTrips = () => {
   const [trips, setTrips] = useState([]);
   const fetchAllTripsUrl = `http://localhost:4000/users/${userId}/trips?origin=${origin}&destination=${destination}&date=${date}&timeRangeStartTime${timeRangeStartTime}&timeRangeEndTime=${timeRangeEndTime}`;
 
-
-
   useEffect(()=>{
     fetchAllTrips();
   },[])
@@ -40,7 +38,7 @@ const AllTrips = () => {
 
     try {
       const headers = {
-        'auth-token': authToken, // Assuming you are using Bearer token authentication
+        'auth-token': authToken,
         'Content-Type': 'application/json',
       };
   
@@ -53,9 +51,7 @@ const AllTrips = () => {
         const allParsedtrips = await response.json();
         setTrips(allParsedtrips.results);
       } else {
-        // Handle the case where the request was not successful (e.g., authentication failed)
         console.log('Request failed with status:', response.status);
-        // You may want to handle different HTTP status codes differently.
       }
     } catch (error) {
       console.error(error);
@@ -67,7 +63,7 @@ const AllTrips = () => {
         <div>
         <div className="AllTripsContainer">
           <SideFilterBar handleFilterData = {handleFilterData} fetchAllTrips= {fetchAllTrips}/>
-          <p style={{fontSize:'1.5vw', fontWeight:'bold'}}>All Trips</p>
+          <p style={{fontSize:'1.5vw', fontWeight:'bold'}}>{groupName}</p>
           <div style={{marginBottom:'4vw'}}>
           {trips.map((ele) => {
             return <div style={{marginBottom:'2.5vh'}} key={"AllTripsId_"+ele.trip_id}>
