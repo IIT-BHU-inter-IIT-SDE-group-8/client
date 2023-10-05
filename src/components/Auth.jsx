@@ -62,7 +62,10 @@ const Auth1 = () => {
             {
                 const json = await response.json();
                 const authToken = json.authToken;
+                const data = json.data;
+                console.log("user id is:",data.user.id);
                 cookies.set('authtoken',authToken);
+                cookies.set('data',data);
             }
             else
             {

@@ -4,6 +4,7 @@ import ModalInputBox from "./ModalInputBox";
 const CreateTripBar = () => {
     const [showModal, setShowModal] = useState(false);
     const [desc, setDesc] = useState('');
+    console.log("desc:",desc)
     const setDescriptionValue = (value) => {
         setDesc(value);
     }

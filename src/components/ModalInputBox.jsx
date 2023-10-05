@@ -5,6 +5,7 @@ import '../Modal.css'
 function ModalInputBox({closeModal, setDescriptionValue}) {
 
   const [textAreaValue, setTextAreaValue] = useState('');
+  console.log("textarea is:",textAreaValue);
 
   const handleTextAreaChange = (event) => {
     const value = event.target.value;

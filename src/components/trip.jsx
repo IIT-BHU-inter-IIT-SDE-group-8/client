@@ -8,6 +8,15 @@ const Trip = ({origin, destination, desc, arrival, departure}) => {
     const closeShowModal = () =>{
         return setShowModal(false);
     } 
+
+    const ArrivalDate = arrival;
+    const DepartureDate = departure;
+    const ArrivalDateObj = new Date(ArrivalDate);
+    const DepartureDateObj = new Date(DepartureDate);
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const newArrival = ArrivalDateObj.toLocaleDateString(undefined, options);
+    const newDeparture = DepartureDateObj.toLocaleDateString(undefined, options);
         
     return(
         <>
@@ -20,7 +29,7 @@ const Trip = ({origin, destination, desc, arrival, departure}) => {
                 <p style={{fontSize:'1.3vw', fontFamily:'sans-serif'}}>Name</p>
             </div>
             <div className="TripInfoContainer">
-                <span><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>From : {origin}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>To : {destination}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>Starting Date/Time : {arrival}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>End Date/Time : {departure}</p></span>
+                <span><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>From : {origin}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>To : {destination}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>Starting Date/Time : {newArrival}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>End Date/Time : {newDeparture}</p></span>
             </div>
             <div className="Info"></div>
             <div className="ButtonsContainer">
