@@ -18,6 +18,7 @@ import MyTrip from './components/MyTips';
 import CommunityTrips from './components/CommunityTrips';
 import TripPage from './components/tripPage';
 import ProfilePage from './components/ProfilePage';
+import Notifications from './components/Notifications';
 
 // const cookies = new Cookies();
 
@@ -70,6 +71,7 @@ const App = () => {
                 <Route path='/' element = {<Auth1/>}/>
                 <Route path='/Bio' element = {<Bio/>}/>
                 <Route path='/AllTrips' element={<AllTrips groupName = {"Trips of friend and Community"}/>}/>
+                <Route path='/Notification' element={<Notifications/>}/>
                 <Route path='/MyTrip' element={<MyTrip/>}/>
                 <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>

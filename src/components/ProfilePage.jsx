@@ -31,9 +31,9 @@ const ProfilePage = () => {
                     <button className="profileBtn"><p className="btnText">Edit profile</p></button>
                 </div>
             </div>
-            <div style={{display:'flex',alignItems:'center', justifyContent:'space-between', width:'80%'}}>
-                <p style={{fontSize:'1.4vw', fontFamily:'cursive'}}>Mutual Trips</p>
-                <button style={{padding:'0 1vw', borderRadius:'0.7vw', border:'0', backgroundColor:'#E5E5E7', cursor:'pointer'}}><p className="btnText">See All</p></button>
+            <div className="headingContainer">
+                <p className="Heading">Mutual Trips</p>
+                <button><p className="btnText">See All</p></button>
             </div>
             <div className="communityContainer">
                 <Slider/>
