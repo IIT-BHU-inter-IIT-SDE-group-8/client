@@ -17,6 +17,7 @@ import AllTrips from './components/Alltrips';
 import MyTrip from './components/MyTips';
 import CommunityTrips from './components/CommunityTrips';
 import TripPage from './components/tripPage';
+import ProfilePage from './components/ProfilePage';
 
 // const cookies = new Cookies();
 
@@ -72,6 +73,7 @@ const App = () => {
                 <Route path='/MyTrip' element={<MyTrip/>}/>
                 <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
+                <Route path='/Profile' element={<ProfilePage/>}/>
             </Routes>
         </Router>
         </>
