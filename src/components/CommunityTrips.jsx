@@ -42,7 +42,7 @@ const CommunityTrips = () => {
             if(response.ok)
             {
                 const json = await response.json();
-                setTrips(json.results);
+                setTrips(json.result);
             }
         } catch (error) {
             console.log("error while fetching the trips:",error);

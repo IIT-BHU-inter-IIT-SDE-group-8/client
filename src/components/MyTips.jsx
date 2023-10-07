@@ -41,7 +41,7 @@ const MyTrip = () => {
         if(response.ok)
         {
             const allParsedtrips = await response.json();
-            setTrips(allParsedtrips.results);
+            setTrips(allParsedtrips.result);
         }
         else
         {

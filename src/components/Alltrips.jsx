@@ -49,7 +49,7 @@ const AllTrips = ({groupName}) => {
   
       if (response.ok) {
         const allParsedtrips = await response.json();
-        setTrips(allParsedtrips.results);
+        setTrips(allParsedtrips.result);
       } else {
         console.log('Request failed with status:', response.status);
       }
@@ -67,7 +67,7 @@ const AllTrips = ({groupName}) => {
           <div style={{marginBottom:'4vw'}}>
           {trips.map((ele) => {
             return <div style={{marginBottom:'2.5vh'}} key={"AllTripsId_"+ele.trip_id}>
-              <Trip origin = {ele.trip_origin} destination = {ele.trip_destination} desc = {ele.trip_desc} arrival = {ele.trip_arrival_datetime} departure = {ele.trip_departure_datetime}/>
+              <Trip userName={ele.user_name} userImage={ele.user_profile_photo} origin = {ele.trip_origin} destination = {ele.trip_destination} desc = {ele.trip_desc} arrival = {ele.trip_arrival_datetime} departure = {ele.trip_departure_datetime}/>
             </div>
           })}
           </div>

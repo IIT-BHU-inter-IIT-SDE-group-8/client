@@ -38,7 +38,7 @@ const TripPage = () => {
             if(response.ok)
             {
                 const json = await response.json();
-                setTrips(json);
+                setTrips(json.result);
             }
             else
             {
@@ -56,11 +56,11 @@ const TripPage = () => {
             <div className="mainProfilePicContainer">
                 <div className="TopContainer">
                     <div className="imageBox">
-                        <img className="profileImg" style={{borderRadius: '50%', height: '8vw'}} src={ProfilePicture} alt="ProfilePicture" />
+                        <img className="profileImg" style={{borderRadius: '50%', height: '8vw'}} src={ele.user_profile_photo ? ele.user_profile_photo: ProfilePicture} alt="ProfilePicture" />
                     </div>
                     <div className="TripCreatorInfoBox">
-                        <p className="mediumSizeTag">Trip Creator Name : Name</p>
-                        <p className="smallTag">Trip Creator Email : Email</p>
+                        <p className="mediumSizeTag">Trip Creator Name : {ele.user_name}</p>
+                        <p className="smallTag">Trip Creator Email : {ele.user_email}</p>
                         <img style={{width: '2.5vw'}} src={messsage} alt="message" />
                     </div>
                     <div className="ButtonBox">

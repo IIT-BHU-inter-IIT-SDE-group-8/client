@@ -3,7 +3,7 @@ import '../Trip.css'
 import Profile from '../assets/Profile.jpeg'
 import Modal from "./Modal";
 
-const Trip = ({origin, destination, desc, arrival, departure}) => {
+const Trip = ({origin, destination, desc, arrival, departure, userName, userImage}) => {
     const [showModal, setShowModal] = useState(false);
     const closeShowModal = () =>{
         return setShowModal(false);
@@ -22,11 +22,11 @@ const Trip = ({origin, destination, desc, arrival, departure}) => {
         <>
         <div className="mainTripContainer">
             <div className="TripImageContainer">
-                <img style={{borderRadius: '30px', width:'7.5vw', margin:'3vw'}} src={Profile} alt="Profile" />
+                <img style={{borderRadius: '30px', width:'7.5vw', margin:'3vw'}} src={userImage ? userImage : Profile} alt="Profile" />
             </div>
             <div className="TripCreatorNameContainer">
                 <p style={{fontSize:'1.5vw', fontFamily:'sans-serif'}}>Posted By</p>
-                <p style={{fontSize:'1.3vw', fontFamily:'sans-serif'}}>Name</p>
+                <p style={{fontSize:'1.3vw', fontFamily:'sans-serif'}}>{userName}</p>
             </div>
             <div className="TripInfoContainer">
                 <span><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>From : {origin}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>To : {destination}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>Starting Date/Time : {newArrival}</p><p style={{fontFamily:'sans-serif',fontSize:'1vw'}}>End Date/Time : {newDeparture}</p></span>

@@ -1,8 +1,42 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import BottomNavbar from "./BottomNavbar";
 import Slider from "./Carousel";
+import { getCookieValue } from "./cookieFunc";
 
 const Notifications = () => {
+
+    const getAllTripInvites = `http://localhost:4000/users/43/trip_invites`;
+    const authToken = getCookieValue(document.cookie, 'authtoken');
+    const [invites, setInvites] = useState([]);
+    const [data, setData] = useState([]);
+    const [bio, setBio] = useState([]);
+
+    useEffect(()=> {
+        fetchAllInvites();
+    },[])
+
+    const fetchAllInvites = async() => {
+        try {
+            const response = await fetch(getAllTripInvites,{
+                method:'GET',
+                headers:{
+                    'auth-token':authToken,
+                    'Content-Type':'application/json'
+                }
+            })
+
+            if(response.ok)
+            {
+                const json = await response.json();
+                setInvites(json.resulta);
+                setData(json.results);
+                setBio(json.result);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <>
         <div style={{paddingBottom:'4vw', marginTop:'1vw'}} className="mainProfileContainer">
@@ -12,7 +46,7 @@ const Notifications = () => {
                 <button className="HeadingBtn"><p className="btnText">See All</p></button>
             </div>
             <div style={{margin:'1vw'}} className="communityContainer">
-                <Slider/>
+                <Slider tripInvites={invites} userData = {data} userBio = {bio}/>
             </div>
             <div className="headingContainer">
                 <p className="Heading">Community Invites</p>
