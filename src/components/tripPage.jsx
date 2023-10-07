@@ -11,7 +11,6 @@ const TripPage = () => {
     const authToken = getCookieValue(document.cookie,'authtoken');
     const [showModal, setShowModal] = useState(false);
     const getTripDataUrl = `http://localhost:4000/trips/45`;
-    const getParticipantsUrl = `http://localhost:4000/trips/45/participants`;
     const [trips, setTrips] = useState([]);
 
     const handleShosModal = () => {

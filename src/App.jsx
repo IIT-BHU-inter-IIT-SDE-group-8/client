@@ -75,7 +75,7 @@ const App = () => {
                 <Route path='/MyTrip' element={<MyTrip/>}/>
                 <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
-                <Route path='/Profile' element={<ProfilePage/>}/>
+                <Route path='/myProfile' element={<ProfilePage/>}/>
             </Routes>
         </Router>
         </>

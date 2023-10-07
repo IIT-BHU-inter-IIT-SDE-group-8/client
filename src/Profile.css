@@ -54,15 +54,14 @@
 
 .Item{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 12vw;
     width: 15vw;
     border-radius: 1vw;
     background-color: #E5E5E7;
-    color: #fff;
     margin: 0 15px;
-    font-size: 4em;
 }
 
 .App {

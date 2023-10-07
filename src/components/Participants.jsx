@@ -1,7 +1,7 @@
 import React from "react";
 import ProfilePicture from '../assets/Profile.jpeg'
 
-const Participants = () => {
+const Participants = ({name, email}) => {
     return (
         <>
             <div className="participantsContainer">
@@ -13,8 +13,8 @@ const Participants = () => {
                     <p className="text fontSize">email</p>
                 </div>
                 <div style={{ display: "flex", flexDirection: 'column' }}>
-                    <p className="text fontSize" style={{ marginBottom: '0.8vw' }}>Name</p>
-                    <p className="text fontSize" >Email</p>
+                    <p className="text fontSize" style={{ marginBottom: '0.8vw' }}>{name}</p>
+                    <p className="text fontSize" >{email}</p>
                 </div>
                 <div>
                     <button style={{ height: 'auto', width: 'auto', borderRadius: '15px', backgroundColor: '#005fc2', cursor: "pointer", margin: '1vw', padding: '0.3vw' }}><p className="text fontSize2">More Info</p></button>
