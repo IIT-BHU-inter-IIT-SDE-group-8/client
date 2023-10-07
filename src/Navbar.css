@@ -1,0 +1,16 @@
+.Navbar{
+    background-color: #1889ff;
+    width: 80vw;
+    height: 5.1vw;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ItemContainer{
+    /* background-color: yellow; */
+    height: 3vw;
+    cursor: pointer;
+}

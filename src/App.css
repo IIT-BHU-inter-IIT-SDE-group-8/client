@@ -1825,6 +1825,10 @@
     }
   }
   
+  body{
+    background-color: rgb(243, 225, 225);
+  }
+  
   #Home {
     width: 100vw;
   }
