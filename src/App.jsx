@@ -46,28 +46,11 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
-                <Route path='/Bio' element = {<Bio/>}/>
-                <Route path='/AllTrips' element={<AllTrips/>}/>
-                <Route path='/MyTrip' element={<MyTrip/>}/>
-                <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
+                <Route path='/bio' element = {<Bio/>}/>
+                <Route path='/allTrips' element={<AllTrips/>}/>
+                <Route path='/myTrip' element={<MyTrip/>}/>
+                <Route path='/community/communityTrips' element={<CommunityTrips/>}/>
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
-                {/* <Route path="/chatapp" element={
-                    <Chat client={client} theme="team light">
-                    <ChannelListContainer 
-                        isCreating={isCreating}
-                        setIsCreating={setIsCreating}
-                        setCreateType={setCreateType}
-                        setIsEditing={setIsEditing}
-                    />
-                    <ChannelContainer 
-                        isCreating={isCreating}
-                        setIsCreating={setIsCreating}
-                        isEditing={isEditing}
-                        setIsEditing={setIsEditing}
-                        createType={createType}
-                    />
-                </Chat>}
-                /> */}
                 <Route path='/chatapp' element={<ChatApp/>} />
                 
             </Routes>

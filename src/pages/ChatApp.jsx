@@ -12,7 +12,7 @@ const cookies = new Cookies();
 
 const apiKey = 'pqbq6waxtf2e';
 
-const authToken = cookies.get("token");
+const authToken = cookies.get("authToken");
 
 const client = StreamChat.getInstance(apiKey);
 
@@ -36,7 +36,7 @@ const ChatApp = () => {
     if(!authToken) return <Auth1 />
 
     return (
-        <>
+    
         <div className="app__wrapper">
             <Chat client={client} theme="team light">
                 <ChannelListContainer 
@@ -55,7 +55,7 @@ const ChatApp = () => {
             </Chat>
         </div>
 
-        </>
+      
     );
 }
 
