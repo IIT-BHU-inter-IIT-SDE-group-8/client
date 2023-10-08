@@ -21,6 +21,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Community from './pages/Community';
 import MyCommunities from './pages/Mycommunities';
+import Map from './components/Map';
 
 // const cookies = new Cookies();
 
@@ -89,6 +90,7 @@ const App = () => {
                 <Route path='/Profile' element={<Profile/>}/>
                 <Route path='/Community' element={<Community/>}/>
                 <Route path='/MyCommunities' element={<MyCommunities/>}/>
+                <Route path='/map' element={<Map/>} />
             </Routes>
         </Router>
         </>
