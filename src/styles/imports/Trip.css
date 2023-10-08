@@ -84,6 +84,7 @@
 }
 
 .createbutton{
+    margin-top: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -249,5 +250,13 @@
         width: 80vw;
         height: auto;
         padding-bottom: 2vw;
+    }
+
+    
+}
+
+@media screen and (max-width: 630px) {
+    .createbutton{
+        margin-top: 1.5vw;
     }
 }
