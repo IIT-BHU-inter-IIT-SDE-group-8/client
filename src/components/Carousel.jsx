@@ -20,11 +20,11 @@ const Slider = ({groups, tripInvites, userData, userBio}) => {
             <p style={{fontSize:'1vw', fontFamily:'cursive', margin:'0', padding:'0', paddingBottom:'0.8vw'}}>{ele.trip_name}</p>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center',justifyContent:'space-around', width:'100%', marginBottom:'1.5vw'}}>
               <div>
-                <img style={{borderRadius:'50%', width:'3vw'}} src={profilePhoto} alt="" />
+                <img style={{borderRadius:'50%', width:'3vw'}} src={ele.user_profile_photo ? ele.user_profile_photo : profilePhoto} alt="" />
               </div>
               <div>
                 <p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0', paddingBottom:'0.5vw'}}>Created By</p>
-                <p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0'}}>Aditya</p>
+                <p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0'}}>{ele.user_name}</p>
               </div>
             </div>
             <div style={{display:"flex", flexDirection:'row', alignItems:'center', justifyContent:'space-around', width:'100%'}}>

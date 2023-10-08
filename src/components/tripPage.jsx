@@ -9,12 +9,32 @@ import TripParticipants from './ParticipantsModel'
 const TripPage = () => {
 
     const authToken = getCookieValue(document.cookie,'authtoken');
+    const userDataCookie = getCookieValue(document.cookie,'data');
+    const userData = JSON.parse(decodeURIComponent(userDataCookie));
+    const auth_user_id = userData.user.id;
+    const [urlDecides, setUrlDescider] = useState(false);
+    
     const [showModal, setShowModal] = useState(false);
     const getTripDataUrl = `http://localhost:4000/trips/45`;
     const [trips, setTrips] = useState([]);
+    const [showBtn, setShowBtn] = useState(false);
+    const participantUrl = `http://localhost:4000/trips/45/participants`;
+    const requestUrl = `http://localhost:4000/trips/45/join_requests`;
+    const url = urlDecides ? requestUrl : participantUrl;
+
+    useEffect(() => {
+        const isCreator = trips.some((ele) => ele.user_id === auth_user_id);
+        setShowBtn(isCreator);
+      }, [trips, auth_user_id]);
 
     const handleShosModal = () => {
         setShowModal(true);
+        setUrlDescider(false);
+    }
+
+    const handleShowModal = () => {
+        setShowModal(true);
+        setUrlDescider(true);
     }
 
     const closeModal = () => {
@@ -51,7 +71,8 @@ const TripPage = () => {
 
     return (
         <>
-        {trips.map((ele) => { 
+        {trips.map((ele) => {
+              
             return <div className="mainTripPageContainer">
             <div className="mainProfilePicContainer">
                 <div className="TopContainer">
@@ -63,6 +84,9 @@ const TripPage = () => {
                         <p className="smallTag">Trip Creator Email : {ele.user_email}</p>
                         <img style={{width: '2.5vw'}} src={messsage} alt="message" />
                     </div>
+                    {showBtn && <div className="ButtonBox">
+                        <button onClick = {handleShowModal} className="seeParticipantsBtn"><p className="smallTag">Join Requests</p></button>
+                    </div>}
                     <div className="ButtonBox">
                         <button onClick = {handleShosModal} className="seeParticipantsBtn"><p className="smallTag">See Paticipants</p></button>
                     </div>
@@ -94,7 +118,7 @@ const TripPage = () => {
                 <BottomNavbar/>
             </div>
             <div>
-            {showModal && <TripParticipants closeModal = {closeModal}/>}
+                {showModal && <TripParticipants showBtn = {showBtn} urlDecides = {urlDecides} url = {url} closeModal = {closeModal}/>}
             </div>
         </div>
         })}

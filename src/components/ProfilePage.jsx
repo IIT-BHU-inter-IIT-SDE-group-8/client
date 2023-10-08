@@ -7,15 +7,15 @@ import Modal from "./Modal";
 import { getCookieValue } from "./cookieFunc";
 
 
-const ProfilePage = () => {
+const ProfilePage = ({myData,myBio, myTrips}) => {
 
     const [userData, setUserData] = useState([]);
     const [userBio, setUserBio] = useState([]);
     const [trips, setTrips] = useState([]);
-    const userInfoUrl = `http://localhost:4000/users/43`;
+    const userInfoUrl = myData;
     const authToken = getCookieValue(document.cookie, 'authtoken');
-    const userBioUrl = `http://localhost:4000/users/bio`;
-    const myTripUrl = `http://localhost:4000/trips/myTrips`;
+    const userBioUrl = myBio;
+    const myTripUrl = myTrips;
     useEffect(() => {
         fetchUserDetails();
         fetchUserBio();
@@ -56,7 +56,7 @@ const ProfilePage = () => {
         if(response.ok)
         {
             const allParsedtrips = await response.json();
-            setTrips(allParsedtrips.results);
+            setTrips(allParsedtrips.result);
         }
         else
         {

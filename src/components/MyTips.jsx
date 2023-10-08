@@ -88,7 +88,7 @@ const MyTrip = () => {
         <div style={{marginBottom:'4vw'}}>
           {trips.map((ele) => {
             return <div style={{marginBottom:'2.5vh'}} key={"AllTripsId_"+ele.trip_id}>
-              <Trip origin = {ele.trip_origin} destination = {ele.trip_destination} desc = {ele.trip_desc} arrival = {ele.trip_arrival_datetime} departure = {ele.trip_departure_datetime}/>
+              <Trip trip_id={ele.trip_id} userName={ele.user_name} userImage={ele.user_profile_photo} origin = {ele.trip_origin} destination = {ele.trip_destination} desc = {ele.trip_desc} arrival = {ele.trip_arrival_datetime} departure = {ele.trip_departure_datetime}/>
             </div>
           })}
           </div>

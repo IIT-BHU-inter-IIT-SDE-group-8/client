@@ -2,13 +2,17 @@ import React, {useState, useEffect} from "react";
 import {getCookieValue} from './cookieFunc'
 import Participants from './Participants'
 
-const TripParticipants = ({closeModal}) => {
-    const getParticipantsUrl = `http://localhost:4000/trips/45/participants`;
+const TripParticipants = ({closeModal, url, urlDecides,showBtn}) => {
+    const getParticipantsUrl = url;
     const [participants, setParticipants] = useState([]);
     const authToken = getCookieValue(document.cookie,'authtoken');
     useEffect(()=>{
         fetchParticipants();
     },[])
+
+    let firstBtn = urlDecides ? "Accept" : "More Info";
+    let secondBtn = urlDecides ? "Reject" : "Add Friend";
+    let heading = urlDecides ? "Trip Join Requests" : "Participants"
 
     const fetchParticipants = async () => {
         try {
@@ -33,10 +37,10 @@ const TripParticipants = ({closeModal}) => {
             <>
             <div className="modal-wrapper" onClick={closeModal}></div>
             <div className="modal-container">
-                <p className="participant">Participants</p>
+                <p className="participant">{heading}</p>
                 {participants && participants.map((ele) => {
                     return <div>
-                        <Participants name = {ele.user_name} email = {ele.user_email}/>
+                        <Participants showBtn = {urlDecides} user_id = {ele.user_id} firstBtn = {firstBtn} secondBtn = {secondBtn} image = {ele.user_profile_photo} name = {ele.user_name} email = {ele.user_email}/>
                     </div>
                 })}   
                 <button style={{height:'auto', width:'auto',borderRadius:'0.6svw', backgroundColor:'#005fc2', cursor:"pointer", padding:'0.4vw'}} onClick={closeModal}><p className="text fontSize3">Close</p></button>
