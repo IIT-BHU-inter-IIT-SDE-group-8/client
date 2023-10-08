@@ -8,8 +8,4 @@ function getCookieValue(cookieString,cookieName) {
     return null;
 }
 
-function userID(){
-    
-}
-
 module.exports = {getCookieValue}

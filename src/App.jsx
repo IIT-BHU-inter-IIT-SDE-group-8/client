@@ -40,17 +40,8 @@ if(authToken) {
 
 
 const App = () => {
-    const authToken = getCookieValue(document.cookie,'authtoken');
-    const userDataCookie = getCookieValue(document.cookie,'data');
 
-    const newuserData = JSON.parse(decodeURIComponent(userDataCookie));
-    const userId = newuserData.user.id;
-    const myData = `http://localhost:4000/users/${userId}`;
-    const myBio = `http://localhost:4000/users/bio`;
-    const myTrips = `http://localhost:4000/trips/myTrips`;
-    const userData = ``;
-    const userBio = ``;
-    const userTrips = ``;
+    
     const [createType, setCreateType] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -58,15 +49,15 @@ const App = () => {
     return (
         
         <>
-        {/* <div className="app__wrapper">
+            {/* <div className="app__wrapper">
             <Chat client={client} theme="team light">
-                <ChannelListContainer 
+                <ChannelListContainer
                     isCreating={isCreating}
                     setIsCreating={setIsCreating}
                     setCreateType={setCreateType}
                     setIsEditing={setIsEditing}
                 />
-                <ChannelContainer 
+                <ChannelContainer
                     isCreating={isCreating}
                     setIsCreating={setIsCreating}
                     isEditing={isEditing}
@@ -78,11 +69,22 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
+<<<<<<< HEAD
+                <Route path='/Bio' element = {<Bio/>}/>
+                <Route path='/AllTrips' element={<AllTrips groupName = {"Trips of friend and Community"}/>}/>
+                <Route path='/Notification' element={<Notifications/>}/>
+                <Route path='/MyTrip' element={<MyTrip/>}/>
+                <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
+                <Route path='/trips/:trip_id' element={<TripPage/>}/>
+                <Route path='/myProfile' element={<ProfilePage/>}/>
+                <Route path='/users/:user_id' element={<ProfilePage/>}/>
+=======
                 <Route path='/bio' element = {<Bio/>}/>
                 <Route path='/allTrips' element={<AllTrips/>}/>
                 <Route path='/myTrip' element={<MyTrip/>}/>
                 <Route path='/community/communityTrips' element={<CommunityTrips/>}/>
          
+>>>>>>> 59bdb1fc04c91673c47b059226274ae2d3506c44
                 <Route path='/chatapp' element={<ChatApp/>} />
             </Routes>
         </Router>
