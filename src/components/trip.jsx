@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import '../styles/Trip.css'
 import Profile from '../assets/Profile.jpeg'
 import Modal from "./Modal";
-import PrimaryButton from "./SecondaryButton";
-import SecondaryButton from "./PrimaryButton";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
 
 const Trip = ({origin, destination, desc, arrival, departure}) => {
     const [showModal, setShowModal] = useState(false);
@@ -13,7 +13,7 @@ const Trip = ({origin, destination, desc, arrival, departure}) => {
         
     return(
         <>
-        <div className="mainTripContainer">
+        <div className="mainCardContainer">
             <div className="TripImageContainer">
                 <img style={{borderRadius: '30px', width:'7.5vw', margin:'3vw'}} src={Profile} alt="Profile" />
             </div>
@@ -26,8 +26,8 @@ const Trip = ({origin, destination, desc, arrival, departure}) => {
             </div>
             <div className="Info"></div>
             <div className="ButtonsContainer">
-                <PrimaryButton text={"Info"} setShowModal={setShowModal}/>
-                <SecondaryButton text={"Join"}/>
+                <SecondaryButton text={"Info"} setShowModal={setShowModal} width={"6vw"}/>
+                <PrimaryButton text={"Join"} width={"6vw"}/>
             </div>
         </div>
         {showModal && <Modal closeModal = {closeShowModal} desc = {desc}/>}

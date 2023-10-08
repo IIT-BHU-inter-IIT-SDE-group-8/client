@@ -23,8 +23,8 @@ const TripCarouselCard = () => {
                         </div>
                     </div>
                     <div className='lowerCarousel'>
-                        <SecondaryButton text={"Open"} />
-                        <PrimaryButton text={"Close"} />
+                        <SecondaryButton text={"Open"} width="6vw"/>
+                        <PrimaryButton text={"Close"} width="6vw"/>
                     </div>
                 </div>
   )

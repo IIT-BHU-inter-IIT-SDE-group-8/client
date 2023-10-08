@@ -1,6 +1,5 @@
 import React from 'react'
 import Profile from '../assets/Profile.jpeg'
-import SecondaryButton from './SecondaryButton';
 import PrimaryButton from './PrimaryButton';
 
 const SuggestedFriendsCommunityCard = ({buttonText}) => {
@@ -13,7 +12,7 @@ const SuggestedFriendsCommunityCard = ({buttonText}) => {
                         </div>
                     </div>
                     <div className='lowerCarousel'>
-                        <PrimaryButton text={buttonText} />
+                        <PrimaryButton text={buttonText} width="6vw"/>
                     </div>
                 </div>
   )

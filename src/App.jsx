@@ -19,6 +19,8 @@ import CommunityTrips from './pages/CommunityTrips';
 import TripPage from './pages/tripPage';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import Community from './pages/Community';
+import MyCommunities from './pages/Mycommunities';
 
 // const cookies = new Cookies();
 
@@ -76,6 +78,8 @@ const App = () => {
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
                 <Route path='/Home' element={<Home/>}/>
                 <Route path='/Profile' element={<Profile/>}/>
+                <Route path='/Community' element={<Community/>}/>
+                <Route path='/MyCommunities' element={<MyCommunities/>}/>
             </Routes>
         </Router>
         </>
