@@ -3,12 +3,14 @@ import Trip from "../components/trip";
 import '../styles/imports/Trip.css'
 import SideFilterBar from "../components/SideFilterBar";
 import BottomNavbar from '../components/BottomNavbar';
+import Alert from "../components/Alert";
 const {getCookieValue} = require('../components/cookieFunc');
 
 const AllTrips = ({groupName}) => {
 
   const authToken = getCookieValue(document.cookie,'authtoken');
   const userDataCookie = getCookieValue(document.cookie,'data');
+  const [showAlert, useShowAlert] = useState(false);
 
   const userData = JSON.parse(decodeURIComponent(userDataCookie));
   const userId = userData.user.id;
@@ -57,9 +59,12 @@ const AllTrips = ({groupName}) => {
       console.error(error);
     }
   }
+
+  let alertbool = false;
   
     return (
         <>
+        {alertbool && <Alert msg = {"trip join request sent successfully!"}/>}
         <div>
         <div className="AllTripsContainer">
           <SideFilterBar handleFilterData = {handleFilterData} fetchAllTrips= {fetchAllTrips}/>
@@ -67,7 +72,7 @@ const AllTrips = ({groupName}) => {
           <div style={{marginBottom:'4vw'}}>
           {trips.map((ele) => {
             return <div style={{marginBottom:'2.5vh'}} key={"AllTripsId_"+ele.trip_id}>
-              <Trip authToken = {authToken} trip_id = {ele.trip_id} userName={ele.user_name} userImage={ele.user_profile_photo} origin = {ele.trip_origin} destination = {ele.trip_destination} desc = {ele.trip_desc} arrival = {ele.trip_arrival_datetime} departure = {ele.trip_departure_datetime}/>
+              <Trip alertbool = {alertbool} authToken = {authToken} trip_id = {ele.trip_id} userName={ele.user_name} userImage={ele.user_profile_photo} origin = {ele.trip_origin} destination = {ele.trip_destination} desc = {ele.trip_desc} arrival = {ele.trip_arrival_datetime} departure = {ele.trip_departure_datetime}/>
             </div>
           })}
           </div>
