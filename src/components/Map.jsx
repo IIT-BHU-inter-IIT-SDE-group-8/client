@@ -35,6 +35,7 @@ const Map = ({ mode }) => {
                     }
                 });
                 setNearestPlace(nearest);
+                setMinDistance(minDistance);
             })
             .catch((error) => {
                 console.error('Error fetching JSON data:', error);
@@ -83,7 +84,7 @@ const Map = ({ mode }) => {
                         <div>
                             <h2>Nearest Place:</h2>
                             <p>Name: {nearestPlace.properties.name}</p>
-                            <p>Distance: {minDistance.toFixed(2)} km</p>
+                            <p>Distance: {minDistance} km</p>
                         </div>
                     ) : (
                         <p>Loading nearest place data...</p>

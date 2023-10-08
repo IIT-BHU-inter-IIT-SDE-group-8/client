@@ -3,6 +3,7 @@ import BottomNavbar from '../components/BottomNavbar';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
 import Trip from '../components/trip';
+import "../styles/imports/Community.css"
 
 function Community() {
   const url =
