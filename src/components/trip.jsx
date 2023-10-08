@@ -1,14 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Profile from '../assets/Profile.jpeg'
 import Modal from "./Modal";
+import { getCookieValue } from "./cookieFunc";
+import { useNavigate } from "react-router-dom";
 
 const Trip = ({authToken, origin, destination, desc, arrival, departure, userName, userImage, trip_id}) => {
+    const navigate = useNavigate();
     const tripJoinRequestUrl = `http://localhost:4000/users/43/trips/joinRequest`;
+    const AuthToken = getCookieValue(document.cookie, 'authtoken');
     const [showModal, setShowModal] = useState(false);
+    const [partOfTrip, setPartOfTrip] = useState([]);
     const closeShowModal = () =>{
         return setShowModal(false);
     } 
-
+    const userParticipantUrl = `http://localhost:4000/trips/userParticipant`;
     const ArrivalDate = arrival;
     const DepartureDate = departure;
     const ArrivalDateObj = new Date(ArrivalDate);
@@ -22,12 +27,40 @@ const Trip = ({authToken, origin, destination, desc, arrival, departure, userNam
         trip_id: trip_id
     }
 
+    const fetchUserParticipant = async () => {
+        try {
+            const response = await fetch(userParticipantUrl, {
+                method: 'GET',
+                headers: {
+                    'auth-token':AuthToken,
+                    'Content-Type':'application/json'
+                }
+            })
+
+            if(response.ok)
+            {
+                const json = await response.json();
+                setPartOfTrip(json.results);
+            }
+            else
+            {
+                console.log("Unecpected error occured:",response.status);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchUserParticipant();
+    },[])
+
     const makeTripJoinRequests = async () => {
         try {
             const response = await fetch(tripJoinRequestUrl,{
                 method: 'POST',
                 headers: {
-                    'auth-token':authToken,
+                    'auth-token':AuthToken,
                     'Content-Type':'application/json'
                 },
                 body: JSON.stringify(requestBody)
@@ -45,7 +78,18 @@ const Trip = ({authToken, origin, destination, desc, arrival, departure, userNam
             console.log(error);
         }
     }
-        
+
+    const openTripPage = () => {
+        navigate(`/trips/${trip_id}`);
+    }
+
+    let usersSet = new Set();
+    partOfTrip.map((ele) => {
+        usersSet.add(ele.trip_id);
+    })
+
+    let bool = usersSet.has(trip_id) ? true : false;
+  
     return(
         <>
         <div className="mainTripContainer">
@@ -62,8 +106,10 @@ const Trip = ({authToken, origin, destination, desc, arrival, departure, userNam
             <div className="Info"></div>
             <div className="ButtonsContainer">
                 <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#93c7fd', cursor: "pointer", border:'0px'}} onClick={()=>setShowModal(true)}><p className="buttonText">Info</p></button>
-                <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#005fc2', cursor:'pointer', border:'0px'}}><p className="buttonText" onClick={makeTripJoinRequests}>Join</p></button>
+                {!bool && <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#005fc2', cursor:'pointer', border:'0px'}}><p className="buttonText" onClick={makeTripJoinRequests}>Join</p></button>} 
+                {bool && <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#6FFF89', cursor:'pointer', border:'0px'}}><p className="buttonText" onClick={openTripPage}>Open</p></button>}
             </div>
+            
         </div>
         {showModal && <Modal closeModal = {closeShowModal} desc = {desc}/>}
         </>

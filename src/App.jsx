@@ -40,17 +40,8 @@ if(authToken) {
 
 
 const App = () => {
-    const authToken = getCookieValue(document.cookie,'authtoken');
-    const userDataCookie = getCookieValue(document.cookie,'data');
 
-    const newuserData = JSON.parse(decodeURIComponent(userDataCookie));
-    const userId = newuserData.user.id;
-    const myData = `http://localhost:4000/users/${userId}`;
-    const myBio = `http://localhost:4000/users/bio`;
-    const myTrips = `http://localhost:4000/trips/myTrips`;
-    const userData = ``;
-    const userBio = ``;
-    const userTrips = ``;
+    
     const [createType, setCreateType] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -84,7 +75,7 @@ const App = () => {
                 <Route path='/MyTrip' element={<MyTrip/>}/>
                 <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
-                <Route path='/myProfile' element={<ProfilePage myData = {myData} myBio = {myBio} myTrips = {myTrips}/>}/>
+                <Route path='/myProfile' element={<ProfilePage/>}/>
                 <Route path='/users/:user_id' element={<ProfilePage/>}/>
                 <Route path='/chatapp' element={<ChatApp/>} />
             </Routes>

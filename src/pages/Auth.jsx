@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/imports/auth.css';
 import Cookies from "universal-cookie";
 import authImage from '../assets/signup1.jpg';
 import logoImage from '../assets/logo.png';
 import gSignIn from '../assets/googleSignIn.png';
 import { Link, useNavigate } from 'react-router-dom';
+import { getCookieValue } from "../components/cookieFunc";
 
 const Auth1 = () => {
-    const cookies = new Cookies();
+    // const authToken = getCookieValue(document.cookie, 'authtoken');
     const navigate = useNavigate();
+    // useEffect(() => {
+    //     // Check if the user is already authenticated and redirect if necessary
+    //     if (authToken) {
+    //         navigate('/myProfile');
+    //     }
+    // }, [authToken, navigate]);
+    const cookies = new Cookies();
+    
     const signUpUrl = 'http://localhost:4000/users';
     const loginUrl = 'http://localhost:4000/login';
     const googleSignUpUrl = 'http://localhost:4000/auth/google';
@@ -18,7 +27,7 @@ const Auth1 = () => {
         name: '',
         email: '',
         password: '',
-        confirmPassword: '', // Add confirmPassword field
+        confirmPassword: ''
     });
 
     const { name, email, password, confirmPassword } = formData;
@@ -77,11 +86,11 @@ const Auth1 = () => {
                 if(isSignUp)
                 {
                     navigate('/Bio');
-                }
-                else
+                }else
                 {
-                    navigate('/myProfile')
+                    navigate('/myProfile');
                 }
+
             } else {
                 console.log('signUp failed');
             }

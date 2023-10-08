@@ -1,26 +1,55 @@
 import React, {useState ,useEffect} from "react";
 import BottomNavbar from "../components/BottomNavbar";
+import Cookies from 'universal-cookie';
 import '../styles/imports/Profile.css'
 import userProfile from '../assets/Profile.jpeg'
 import Slider from "../components/Carousel";
 import Modal from "../components/Modal";
 import { getCookieValue } from "../components/cookieFunc";
+import { Link, useNavigate } from "react-router-dom";
 
 
-const ProfilePage = ({myData,myBio, myTrips}) => {
-
+const ProfilePage = () => {
+    const cookies = new Cookies();
+    const navigate = useNavigate();
     const [userData, setUserData] = useState([]);
     const [userBio, setUserBio] = useState([]);
-    const [trips, setTrips] = useState([]);
-    const userInfoUrl = myData;
+    const [trips, setTrips] = useState([]);;
+    
     const authToken = getCookieValue(document.cookie, 'authtoken');
-    const userBioUrl = myBio;
-    const myTripUrl = myTrips;
+    const userDataCookie = getCookieValue(document.cookie,'data');
+    const newuserData = JSON.parse(decodeURIComponent(userDataCookie));
+    const userId = newuserData.user.id;
+    const userInfoUrl = `http://localhost:4000/users/${userId}`;
+    const userBioUrl = `http://localhost:4000/users/bio`;
+    const myTripUrl = `http://localhost:4000/trips/myTrips`;
     useEffect(() => {
         fetchUserDetails();
         fetchUserBio();
         fetchAllMyTrips();
     },[])
+
+    const logoutUrl = `http://localhost:4000/logout`;
+
+    const dologout = async () => {
+        try {
+            const response = await fetch(logoutUrl,{
+                method:'GET',
+                headers:{
+                    'auth-token':authToken,
+                    'Content-Type':'application/json'
+                }
+            })
+
+            if(response.json)
+            {
+                await cookies.remove('authtoken');
+                navigate('/');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const fetchUserDetails = async() => {
         try {
@@ -124,11 +153,14 @@ const ProfilePage = ({myData,myBio, myTrips}) => {
                     <div style={{ display: "flex", flexDirection: 'row' }}>
                         <button onClick={openModal} className="profileBtn"><p className="btnText">Bio</p></button>
                         <button className="profileBtn"><p className="btnText">Edit profile</p></button>
+                        <button className="profileBtn" onClick={dologout}><p className="btnText">Logout</p></button>
                     </div>
                 </div>
                 <div className="headingContainer">
                     <p className="Heading">My Trips</p>
+                    <Link to='/MyTrip'>
                     <button className="HeadingBtn"><p className="btnText">See All</p></button>
+                    </Link>
                 </div>
                  <div className="communityContainer">
                         <Slider groups = {trips} />
