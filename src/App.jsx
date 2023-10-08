@@ -1,44 +1,42 @@
-// import React, { useState } from 'react';
-// import { StreamChat } from 'stream-chat';
-// import { Chat } from 'stream-chat-react';
-// import Cookies from 'universal-cookie';
-import Auth1 from './components/Auth'
+import React, { useState } from 'react';
+import { StreamChat } from 'stream-chat';
+import { Chat } from 'stream-chat-react';
+import Cookies from 'universal-cookie';
+import Auth1 from './pages/Auth'
 import {BrowserRouter as Router,
         Route,
         Routes
     } from 'react-router-dom'
 
-// import { ChannelListContainer, ChannelContainer, Auth } from './components';
-
-// import 'stream-chat-react/dist/css/index.css';
-import './App.css';
-import Bio from './components/Bio';
-import AllTrips from './components/Alltrips';
-import MyTrip from './components/MyTips';
-import CommunityTrips from './components/CommunityTrips';
-import TripPage from './components/tripPage';
-import ProfilePage from './components/ProfilePage';
-import Notifications from './components/Notifications';
+import 'stream-chat-react/dist/css/index.css';
+import Bio from './pages/Bio';
+import AllTrips from './pages/Alltrips';
+import MyTrip from './pages/MyTips';
+import CommunityTrips from './pages/CommunityTrips';
+import TripPage from './pages/tripPage';
+import ProfilePage from './pages/ProfilePage';
+import Notifications from './pages/Notifications';
 import { getCookieValue } from './components/cookieFunc';
+import ChatApp from './pages/ChatApp';
 
-// const cookies = new Cookies();
+const cookies = new Cookies();
 
-// const apiKey = 'pqbq6waxtf2e';
+const apiKey = 'pqbq6waxtf2e';
 
-// const authToken = cookies.get("token");
+const authToken = cookies.get("token");
 
-// const client = StreamChat.getInstance(apiKey);
+const client = StreamChat.getInstance(apiKey);
 
-// if(authToken) {
-//     client.connectUser({
-//         id: cookies.get('userId'),
-//         name: cookies.get('username'),
-//         fullName: cookies.get('fullName'),
-//         image: cookies.get('avatarURL'),
-//         hashedPassword: cookies.get('hashedPassword'),
-//         phoneNumber: cookies.get('phoneNumber'),
-//     }, authToken)
-// }
+if(authToken) {
+    client.connectUser({
+        id: cookies.get('userId'),
+        name: cookies.get('username'),
+        fullName: cookies.get('fullName'),
+        image: cookies.get('avatarURL'),
+        hashedPassword: cookies.get('hashedPassword'),
+        phoneNumber: cookies.get('phoneNumber'),
+    }, authToken)
+}
 
 
 const App = () => {
@@ -53,11 +51,9 @@ const App = () => {
     const userData = ``;
     const userBio = ``;
     const userTrips = ``;
-//     const [createType, setCreateType] = useState('');
-//     const [isCreating, setIsCreating] = useState(false);
-//     const [isEditing, setIsEditing] = useState(false);
-
-    // if(!authToken) return <Auth />
+    const [createType, setCreateType] = useState('');
+    const [isCreating, setIsCreating] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     return (
         
@@ -90,6 +86,7 @@ const App = () => {
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
                 <Route path='/myProfile' element={<ProfilePage myData = {myData} myBio = {myBio} myTrips = {myTrips}/>}/>
                 <Route path='/users/:user_id' element={<ProfilePage/>}/>
+                <Route path='/chatapp' element={<ChatApp/>} />
             </Routes>
         </Router>
         </>

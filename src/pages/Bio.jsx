@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../auth.css'
+import '../styles/imports/auth.css'
 import authImage from '../assets/signup1.jpg'
 import logoImage from '../assets/logo.png'
 

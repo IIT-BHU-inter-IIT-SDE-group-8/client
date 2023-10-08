@@ -1,10 +1,10 @@
 import React, {useState ,useEffect} from "react";
-import BottomNavbar from "./BottomNavbar";
-import '../Profile.css'
+import BottomNavbar from "../components/BottomNavbar";
+import '../styles/imports/Profile.css'
 import userProfile from '../assets/Profile.jpeg'
-import Slider from "./Carousel";
-import Modal from "./Modal";
-import { getCookieValue } from "./cookieFunc";
+import Slider from "../components/Carousel";
+import Modal from "../components/Modal";
+import { getCookieValue } from "../components/cookieFunc";
 
 
 const ProfilePage = ({myData,myBio, myTrips}) => {

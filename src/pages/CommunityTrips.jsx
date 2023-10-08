@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from "react";
-import SideFilterBar from "./SideFilterBar";
-import Trip from "./trip";
-import BottomNavbar from "./BottomNavbar";
-import {getCookieValue} from './cookieFunc'
+import SideFilterBar from "../components/SideFilterBar";
+import Trip from "../components/trip";
+import BottomNavbar from "../components/BottomNavbar";
+import {getCookieValue} from '../components/cookieFunc'
 
 const CommunityTrips = () => {
 

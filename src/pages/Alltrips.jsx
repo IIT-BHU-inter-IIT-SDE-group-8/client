@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import Trip from "./trip";
-import '../Trip.css'
-import SideFilterBar from "./SideFilterBar";
-import BottomNavbar from './BottomNavbar';
-const {getCookieValue} = require('./cookieFunc')
+import Trip from "../components/trip";
+import '../styles/imports/Trip.css'
+import SideFilterBar from "../components/SideFilterBar";
+import BottomNavbar from '../components/BottomNavbar';
+const {getCookieValue} = require('../components/cookieFunc');
 
 const AllTrips = ({groupName}) => {
 

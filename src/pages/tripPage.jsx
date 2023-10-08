@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
-import BottomNavbar from "./BottomNavbar";
-import '../Trip.css';
+import BottomNavbar from "../components/BottomNavbar";
+import '../styles/imports/Trip.css';
 import ProfilePicture from '../assets/Profile.jpeg'
 import messsage from '../assets/message.png'
-import {getCookieValue} from './cookieFunc'
-import TripParticipants from './ParticipantsModel'
+import {getCookieValue} from '../components/cookieFunc'
+import TripParticipants from '../components/ParticipantsModel'
 
 const TripPage = () => {
 

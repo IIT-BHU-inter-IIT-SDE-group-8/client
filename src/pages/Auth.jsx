@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../auth.css';
+import '../styles/imports/auth.css';
 import Cookies from "universal-cookie";
 import authImage from '../assets/signup1.jpg';
 import logoImage from '../assets/logo.png';

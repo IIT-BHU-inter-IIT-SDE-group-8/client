@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import CreateTripBar from "./createTripBar";
-import Trip from "./trip";
-import BottomNavbar from "./BottomNavbar";
-const {getCookieValue} = require('./cookieFunc')
+import CreateTripBar from "../components/createTripBar";
+import Trip from "../components/trip";
+import BottomNavbar from "../components/BottomNavbar";
+const {getCookieValue} = require('../components/cookieFunc')
 
 const MyTrip = () => {
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import BottomNavbar from "./BottomNavbar";
-import Slider from "./Carousel";
-import { getCookieValue } from "./cookieFunc";
+import BottomNavbar from "../components/BottomNavbar";
+import Slider from "../components/Carousel";
+import { getCookieValue } from "../components/cookieFunc";
 
 const Notifications = () => {
 
