@@ -4,9 +4,12 @@ import '../styles/imports/auth.css'
 import authImage from '../assets/signup1.jpg'
 import logoImage from '../assets/logo.png'
 import { getCookieValue } from "../components/cookieFunc";
+import Alert from "../components/Alert";
 
-const Auth1 = () => {
+const Bio = () => {
     const navigate = useNavigate();
+    const [alert, setAlert] = useState(true);
+    const [loginAlert, setLoginAlert] = useState(false);
     const authToken = getCookieValue(document.cookie, 'authtoken');
     // useEffect(() => {
     //     // Check if the user is already authenticated and redirect if necessary
@@ -15,6 +18,12 @@ const Auth1 = () => {
     //     }
     // }, [authToken, navigate]);
     const url = 'http://localhost:4000/users/bio';
+
+    useEffect(() => {
+        setTimeout(() => {
+            setAlert(false);
+        }, 2000);
+    },[])
 
     let requestData = {};
 
@@ -64,7 +73,7 @@ const Auth1 = () => {
             if(response.ok){
                 console.log("bio entered successfully");
 
-                navigate('/');
+                navigate('/', { state: { signedUp: true } });
 
             }
             else
@@ -79,6 +88,7 @@ const Auth1 = () => {
     return (
         <>
             <div>
+                {alert && <Alert msg = {"Sign Up successful!"}/>}
                 <div className="mainContainer">
                     <div className="imageContainer" style={{ backgroundColor: "black" }}>
                         <img className="imageContainer" src={authImage} alt="authImage" />
@@ -138,4 +148,4 @@ const Auth1 = () => {
     )
 }
 
-export default Auth1;
+export default Bio;

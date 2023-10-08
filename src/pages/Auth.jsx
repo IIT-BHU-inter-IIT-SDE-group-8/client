@@ -4,14 +4,14 @@ import Cookies from "universal-cookie";
 import authImage from '../assets/signup1.jpg';
 import logoImage from '../assets/logo.png';
 import gSignIn from '../assets/googleSignIn.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getCookieValue } from "../components/cookieFunc";
 import Alert from "../components/Alert";
 
 const Auth1 = () => {
     // const authToken = getCookieValue(document.cookie, 'authtoken');
     const navigate = useNavigate();
-    const [alert, setAlert] = useState(false);
+    // const [alert, setAlert] = useState(false);
     // useEffect(() => {
     //     // Check if the user is already authenticated and redirect if necessary
     //     if (authToken) {
@@ -19,6 +19,10 @@ const Auth1 = () => {
     //     }
     // }, [authToken, navigate]);
     const cookies = new Cookies();
+    const location = useLocation();
+    const signedUp = location.state?.signedUp;
+
+    let alert = signedUp ? true : false;
     
     const signUpUrl = 'http://localhost:4000/users';
     const loginUrl = 'http://localhost:4000/login';
@@ -107,7 +111,7 @@ const Auth1 = () => {
 
     return (
         <div>
-            <Alert/>
+            {alert && <Alert msg = {"Bio entered successfully Kindly login to continue!"}/>}
             <div className="mainContainer">
                 <div className="imageContainer" style={{ backgroundColor: "black" }}>
                     <img className="imageContainer" src={authImage} alt="authImage" />
