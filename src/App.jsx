@@ -78,22 +78,11 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
-<<<<<<< HEAD
                 <Route path='/bio' element = {<Bio/>}/>
                 <Route path='/allTrips' element={<AllTrips/>}/>
                 <Route path='/myTrip' element={<MyTrip/>}/>
                 <Route path='/community/communityTrips' element={<CommunityTrips/>}/>
-                <Route path='/trips/:trip_id' element={<TripPage/>}/>
-=======
-                <Route path='/Bio' element = {<Bio/>}/>
-                <Route path='/AllTrips' element={<AllTrips groupName = {"Trips of friend and Community"}/>}/>
-                <Route path='/Notification' element={<Notifications/>}/>
-                <Route path='/MyTrip' element={<MyTrip/>}/>
-                <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
-                <Route path='/trips/:trip_id' element={<TripPage/>}/>
-                <Route path='/myProfile' element={<ProfilePage myData = {myData} myBio = {myBio} myTrips = {myTrips}/>}/>
-                <Route path='/users/:user_id' element={<ProfilePage/>}/>
->>>>>>> f95923e7741bcbf38bb416570f6e2a5569b4201d
+         
                 <Route path='/chatapp' element={<ChatApp/>} />
             </Routes>
         </Router>
