@@ -19,6 +19,7 @@ import CommunityTrips from './components/CommunityTrips';
 import TripPage from './components/tripPage';
 import ProfilePage from './components/ProfilePage';
 import Notifications from './components/Notifications';
+import { getCookieValue } from './components/cookieFunc';
 
 // const cookies = new Cookies();
 
@@ -41,7 +42,12 @@ import Notifications from './components/Notifications';
 
 
 const App = () => {
-    const myData = `http://localhost:4000/users/43`;
+    const authToken = getCookieValue(document.cookie,'authtoken');
+    const userDataCookie = getCookieValue(document.cookie,'data');
+
+    const newuserData = JSON.parse(decodeURIComponent(userDataCookie));
+    const userId = newuserData.user.id;
+    const myData = `http://localhost:4000/users/${userId}`;
     const myBio = `http://localhost:4000/users/bio`;
     const myTrips = `http://localhost:4000/trips/myTrips`;
     const userData = ``;

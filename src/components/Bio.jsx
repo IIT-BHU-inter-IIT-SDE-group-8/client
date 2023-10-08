@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../auth.css'
 import authImage from '../assets/signup1.jpg'
 import logoImage from '../assets/logo.png'
 
 const Auth1 = () => {
-
+    const navigate = useNavigate();
     const url = 'http://localhost:4000/users/bio';
     const authToken = document.cookie
     .split('; ')
@@ -58,6 +59,9 @@ const Auth1 = () => {
 
             if(response.ok){
                 console.log("bio entered successfully");
+
+                navigate('/');
+
             }
             else
             {
@@ -66,8 +70,6 @@ const Auth1 = () => {
         } catch (error) {
             console.log("error while entering bio:",error);
         }
-
-        
     }
 
     return (

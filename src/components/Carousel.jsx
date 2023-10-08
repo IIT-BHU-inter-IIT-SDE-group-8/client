@@ -11,6 +11,10 @@ const breakPoints = [
 
 const Slider = ({groups, tripInvites, userData, userBio}) => {
     console.log("tripInvites are:",tripInvites);
+    const [visible, setVisible] = useState(true);
+    const updateVisible = () => {
+      setVisible(false);
+    }
     return (
     <>
       <div className="App">
@@ -42,7 +46,8 @@ const Slider = ({groups, tripInvites, userData, userBio}) => {
           })}
           {tripInvites
            && tripInvites.map((ele) => {
-            return <div className="Item">
+            return <div>
+              {visible && <div className="Item">
             <p style={{fontSize:'1vw', fontFamily:'cursive', margin:'0', padding:'0', paddingBottom:'0.8vw'}}>{ele.trip_name}</p>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center',justifyContent:'space-around', width:'100%', marginBottom:'1.5vw'}}>
               {userBio && userBio.map((ele) => {
@@ -63,8 +68,8 @@ const Slider = ({groups, tripInvites, userData, userBio}) => {
                 <p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0'}}>{ele.trip_origin}</p>
               </div>
               <div style={{display:'flex', flexDirection:'column'}}>
-                <button style={{padding:'0.3vw', borderRadius:'0.3vw', border:'none', backgroundColor:'#93c7fd'}}><p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0', cursor:'pointer'}}>Accept</p></button>
-                <button style={{padding:'0.3vw', borderRadius:'0.3vw', border:'none', backgroundColor:'#93c7fd', marginTop:'0.3vw'}}><p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0', cursor:'pointer'}}>Reject</p></button>
+                <button style={{padding:'0.3vw', borderRadius:'0.3vw', border:'none', backgroundColor:'#93c7fd'}} onClick={updateVisible}><p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0', cursor:'pointer'}}>Accept</p></button>
+                <button style={{padding:'0.3vw', borderRadius:'0.3vw', border:'none', backgroundColor:'#93c7fd', marginTop:'0.3vw'}} onClick={updateVisible}><p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0', cursor:'pointer'}}>Reject</p></button>
               </div>
               <div>
                 
@@ -72,7 +77,8 @@ const Slider = ({groups, tripInvites, userData, userBio}) => {
                 <p style={{fontSize:'0.8vw', fontFamily:'cursive', margin:'0', padding:'0'}}>{ele.trip_destination}</p>
               </div>
             </div>
-          </div>
+          </div>}
+            </div>
           })}
           {/* <div className="Item">Two</div> */}
         </Carousel>
