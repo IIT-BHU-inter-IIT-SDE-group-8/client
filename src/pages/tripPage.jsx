@@ -5,21 +5,22 @@ import ProfilePicture from '../assets/Profile.jpeg'
 import messsage from '../assets/message.png'
 import {getCookieValue} from '../components/cookieFunc'
 import TripParticipants from '../components/ParticipantsModel'
+import { useParams } from "react-router-dom";
 
 const TripPage = () => {
 
+    const {trip_id} = useParams();
     const authToken = getCookieValue(document.cookie,'authtoken');
     const userDataCookie = getCookieValue(document.cookie,'data');
     const userData = JSON.parse(decodeURIComponent(userDataCookie));
     const auth_user_id = userData.user.id;
     const [urlDecides, setUrlDescider] = useState(false);
-    
     const [showModal, setShowModal] = useState(false);
-    const getTripDataUrl = `http://localhost:4000/trips/45`;
+    const getTripDataUrl = `http://localhost:4000/trips/${trip_id}`;
     const [trips, setTrips] = useState([]);
     const [showBtn, setShowBtn] = useState(false);
-    const participantUrl = `http://localhost:4000/trips/45/participants`;
-    const requestUrl = `http://localhost:4000/trips/45/join_requests`;
+    const participantUrl = `http://localhost:4000/trips/${trip_id}/participants`;
+    const requestUrl = `http://localhost:4000/trips/${trip_id}/join_requests`;
     const url = urlDecides ? requestUrl : participantUrl;
 
     useEffect(() => {
