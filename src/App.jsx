@@ -18,6 +18,7 @@ import ProfilePage from './pages/ProfilePage';
 import Notifications from './pages/Notifications';
 import { getCookieValue } from './components/cookieFunc';
 import ChatApp from './pages/ChatApp';
+import Home from './pages/Home';
 
 const cookies = new Cookies();
 
@@ -69,7 +70,6 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
-<<<<<<< HEAD
                 <Route path='/Bio' element = {<Bio/>}/>
                 <Route path='/AllTrips' element={<AllTrips groupName = {"Trips of friend and Community"}/>}/>
                 <Route path='/Notification' element={<Notifications/>}/>
@@ -78,14 +78,8 @@ const App = () => {
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
                 <Route path='/myProfile' element={<ProfilePage/>}/>
                 <Route path='/users/:user_id' element={<ProfilePage/>}/>
-=======
-                <Route path='/bio' element = {<Bio/>}/>
-                <Route path='/allTrips' element={<AllTrips/>}/>
-                <Route path='/myTrip' element={<MyTrip/>}/>
-                <Route path='/community/communityTrips' element={<CommunityTrips/>}/>
-         
->>>>>>> 59bdb1fc04c91673c47b059226274ae2d3506c44
                 <Route path='/chatapp' element={<ChatApp/>} />
+                <Route path='/Home' element={<Home/>}/>
             </Routes>
         </Router>
         </>

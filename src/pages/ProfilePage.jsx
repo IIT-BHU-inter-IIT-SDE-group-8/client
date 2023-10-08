@@ -23,11 +23,6 @@ const ProfilePage = () => {
     const userInfoUrl = `http://localhost:4000/users/${userId}`;
     const userBioUrl = `http://localhost:4000/users/bio`;
     const myTripUrl = `http://localhost:4000/trips/myTrips`;
-    useEffect(() => {
-        fetchUserDetails();
-        fetchUserBio();
-        fetchAllMyTrips();
-    },[])
 
     const logoutUrl = `http://localhost:4000/logout`;
 
@@ -113,6 +108,11 @@ const ProfilePage = () => {
         }
     }
 
+    useEffect(() => {
+        fetchUserDetails();
+        fetchUserBio();
+        fetchAllMyTrips();
+    },[])
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => {

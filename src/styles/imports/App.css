@@ -1829,3 +1829,81 @@
     background-color: rgb(243, 225, 225);
   }
   
+  .input-group {
+    position: relative;
+    bottom: 10px;
+  }
+
+  .input-tag {
+    color: white;
+    position: relative;
+    left: 15px;
+    top: 10px;
+  }
+
+  #Home {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 200px;
+  }
+
+  #HomeBottom {
+    width: 60vw;
+  }
+
+  .Carousel {
+    margin-top: 20px;
+    height: 200px;
+    background-color: #e8f3ff;
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+  }
+
+  .arrowIcon {
+    margin: 20px;
+    font-size: 25px;
+  }
+
+  .carouselCard {
+    width: 200px;
+    height: 180px;
+    background-color: #e5e5e7;
+    margin: 20px;
+    border-radius: 8px;
+  }
+
+  .CarouselImageContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .UpperCarousel {
+    display: flex;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .lowerCarousel {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+  }
+
+  .profileImage {
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  .rightCarousel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    padding-left: 30px;
+  }

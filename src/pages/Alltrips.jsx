@@ -37,6 +37,7 @@ const AllTrips = ({groupName}) => {
   const fetchAllTrips = async () => {
 
     try {
+      console.log(authToken)
       const headers = {
         'auth-token': authToken,
         'Content-Type': 'application/json',
