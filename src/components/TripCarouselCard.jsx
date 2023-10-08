@@ -3,7 +3,7 @@ import Profile from '../assets/Profile.jpeg'
 import SecondaryButton from './SecondaryButton';
 import PrimaryButton from './PrimaryButton';
 
-const TripCarouselCard = () => {
+const TripCarouselCard = ({trip_name}) => {
   return (
     <div className='carouselCard'>
                     <div className='UpperCarousel'>
@@ -14,7 +14,7 @@ const TripCarouselCard = () => {
                         <div className='rightCarousel'>
                             <div style={{display: "flex", flexDirection: "column"}}>
                                 <span>To</span>
-                                <span>Place</span>
+                                <span>{trip_name} </span>
                             </div>
                             <div style={{display: "flex", flexDirection: "column"}}>
                                 <span>On</span>
