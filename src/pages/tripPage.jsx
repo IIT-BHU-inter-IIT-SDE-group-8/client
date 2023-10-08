@@ -10,7 +10,9 @@ import { useParams } from "react-router-dom";
 const TripPage = () => {
 
     const {trip_id} = useParams();
+    console.log(trip_id);
     const authToken = getCookieValue(document.cookie,'authtoken');
+    console.log(authToken);
     const userDataCookie = getCookieValue(document.cookie,'data');
     const userData = JSON.parse(decodeURIComponent(userDataCookie));
     const auth_user_id = userData.user.id;

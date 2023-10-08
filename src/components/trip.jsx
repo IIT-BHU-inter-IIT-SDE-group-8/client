@@ -4,12 +4,13 @@ import Modal from "./Modal";
 import { getCookieValue } from "./cookieFunc";
 import { useNavigate } from "react-router-dom";
 
-const Trip = ({authToken, origin, destination, desc, arrival, departure, userName, userImage, trip_id}) => {
+const Trip = ({ origin, destination, desc, arrival, departure, userName, userImage, trip_id}) => {
     const navigate = useNavigate();
     const tripJoinRequestUrl = `http://localhost:4000/users/43/trips/joinRequest`;
     const AuthToken = getCookieValue(document.cookie, 'authtoken');
     const [showModal, setShowModal] = useState(false);
-    const [partOfTrip, setPartOfTrip] = useState([]);
+    const [partOfTrip, setPartOfTrip] = useState([]); 
+    const [showText, setShowText] = useState(false);
     const closeShowModal = () =>{
         return setShowModal(false);
     } 
@@ -40,6 +41,7 @@ const Trip = ({authToken, origin, destination, desc, arrival, departure, userNam
             if(response.ok)
             {
                 const json = await response.json();
+                
                 setPartOfTrip(json.results);
             }
             else
@@ -69,14 +71,20 @@ const Trip = ({authToken, origin, destination, desc, arrival, departure, userNam
             if(response.ok)
             {
                 console.log("request made successfully!");
+                setShowTextF();
             }
             else
             {
+                setShowText(true);
                 console.log("error occured while making request:",response.status);
             }
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const setShowTextF = () => {
+        setShowText(false);
     }
 
     const openTripPage = () => {
@@ -105,9 +113,10 @@ const Trip = ({authToken, origin, destination, desc, arrival, departure, userNam
             </div>
             <div className="Info"></div>
             <div className="ButtonsContainer">
-                <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#93c7fd', cursor: "pointer", border:'0px'}} onClick={()=>setShowModal(true)}><p className="buttonText">Info</p></button>
-                {!bool && <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#005fc2', cursor:'pointer', border:'0px'}}><p className="buttonText" onClick={makeTripJoinRequests}>Join</p></button>} 
-                {bool && <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#6FFF89', cursor:'pointer', border:'0px'}}><p className="buttonText" onClick={openTripPage}>Open</p></button>}
+                {showText && <p>Trip join request made successfully!!</p>}
+                <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#93c7fd', cursor: "pointer", border:'0px', paddingTop:'0.8vw'}} onClick={()=>setShowModal(true)}><p className="buttonText">Info</p></button>
+                {!bool && <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#005fc2', cursor:'pointer', border:'0px', paddingTop:'0.8vw'}}><p className="buttonText" onClick={makeTripJoinRequests}>Join</p></button>} 
+                {bool && <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#6FFF89', cursor:'pointer', border:'0px', paddingTop:'0.8vw'}}><p className="buttonText" onClick={openTripPage}>Open</p></button>}
             </div>
             
         </div>

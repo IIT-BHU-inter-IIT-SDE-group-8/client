@@ -1,9 +1,9 @@
 import React from "react";
 
-const Alert = () => {
+const Alert = ({msg}) => {
     return <>
-        <div class="alert alert-primary" role="alert">
-    A simple primary alert—check it out!
+        <div style={{position:'fixed', width:'100%'}} class="alert alert-primary" role="alert">
+    {msg}
     </div>
     </>
 }

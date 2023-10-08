@@ -6,12 +6,14 @@ import userProfile from '../assets/Profile.jpeg'
 import Slider from "../components/Carousel";
 import Modal from "../components/Modal";
 import { getCookieValue } from "../components/cookieFunc";
+import Update from "../components/EditModal";
 import { Link, useNavigate } from "react-router-dom";
 
 
 const ProfilePage = () => {
     const cookies = new Cookies();
     const navigate = useNavigate();
+    const [update, setUpdate] = useState(false);
     const [userData, setUserData] = useState([]);
     const [userBio, setUserBio] = useState([]);
     const [trips, setTrips] = useState([]);;
@@ -108,11 +110,14 @@ const ProfilePage = () => {
         }
     }
 
-    useEffect(() => {
-        fetchUserDetails();
-        fetchUserBio();
-        fetchAllMyTrips();
-    },[])
+    const closeUpdate = () => {
+        setUpdate(false);
+    }
+
+    const openUpdate = () => {
+        setUpdate(true);
+    }
+
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => {
@@ -152,7 +157,7 @@ const ProfilePage = () => {
                     })}
                     <div style={{ display: "flex", flexDirection: 'row' }}>
                         <button onClick={openModal} className="profileBtn"><p className="btnText">Bio</p></button>
-                        <button className="profileBtn"><p className="btnText">Edit profile</p></button>
+                        <button className="profileBtn" onClick={openUpdate}><p className="btnText">Edit profile</p></button>
                         <button className="profileBtn" onClick={dologout}><p className="btnText">Logout</p></button>
                     </div>
                 </div>
@@ -190,6 +195,7 @@ const ProfilePage = () => {
             {showModal && userBio && userBio.map((ele) => {
                 return <Modal closeModal={closeModal} desc={ele.bio}/>
             })}
+            {update && <Update closeUpdate = {closeUpdate}/>}
         </>
     )
 }
