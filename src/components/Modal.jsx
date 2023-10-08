@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import '../styles/Modal.css'
 
 const Modal = ({ closeModal, desc }) => {
 

@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-import '../styles/auth.css'
+import React, { useState ,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import '../styles/imports/auth.css'
 import authImage from '../assets/signup1.jpg'
 import logoImage from '../assets/logo.png'
+import { getCookieValue } from "../components/cookieFunc";
 
 const Auth1 = () => {
-
+    const navigate = useNavigate();
+    const authToken = getCookieValue(document.cookie, 'authtoken');
+    // useEffect(() => {
+    //     // Check if the user is already authenticated and redirect if necessary
+    //     if (authToken) {
+    //         navigate('/myProfile');
+    //     }
+    // }, [authToken, navigate]);
     const url = 'http://localhost:4000/users/bio';
-    const authToken = document.cookie
-    .split('; ')
-    .find((cookie) => cookie.startsWith('authtoken='))
-    ?.split('=')[1];
 
     let requestData = {};
 
@@ -58,6 +63,9 @@ const Auth1 = () => {
 
             if(response.ok){
                 console.log("bio entered successfully");
+
+                navigate('/');
+
             }
             else
             {
@@ -66,8 +74,6 @@ const Auth1 = () => {
         } catch (error) {
             console.log("error while entering bio:",error);
         }
-
-        
     }
 
     return (

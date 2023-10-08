@@ -1,3 +1,8 @@
+import React, { useState } from 'react';
+import { StreamChat } from 'stream-chat';
+import { Chat } from 'stream-chat-react';
+import Cookies from 'universal-cookie';
+import Auth1 from './pages/Auth'
 // import React, { useState } from 'react';
 // import { StreamChat } from 'stream-chat';
 // import { Chat } from 'stream-chat-react';
@@ -19,15 +24,35 @@ import CommunityTrips from './pages/CommunityTrips';
 import TripPage from './pages/tripPage';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import 'stream-chat-react/dist/css/index.css';
+import Bio from './pages/Bio';
+import AllTrips from './pages/Alltrips';
+import MyTrip from './pages/MyTips';
+import CommunityTrips from './pages/CommunityTrips';
+import TripPage from './pages/tripPage';
+import ProfilePage from './pages/ProfilePage';
+import Notifications from './pages/Notifications';
+import { getCookieValue } from './components/cookieFunc';
+import ChatApp from './pages/ChatApp';
 
-// const cookies = new Cookies();
+const cookies = new Cookies();
 
-// const apiKey = 'pqbq6waxtf2e';
+const apiKey = 'pqbq6waxtf2e';
 
-// const authToken = cookies.get("token");
+const authToken = cookies.get("token");
 
-// const client = StreamChat.getInstance(apiKey);
+const client = StreamChat.getInstance(apiKey);
 
+if(authToken) {
+    client.connectUser({
+        id: cookies.get('userId'),
+        name: cookies.get('username'),
+        fullName: cookies.get('fullName'),
+        image: cookies.get('avatarURL'),
+        hashedPassword: cookies.get('hashedPassword'),
+        phoneNumber: cookies.get('phoneNumber'),
+    }, authToken)
+}
 // if (authToken) {
 //     client.connectUser({
 //         id: cookies.get('userId'),
@@ -41,6 +66,11 @@ import Profile from './pages/Profile';
 
 
 const App = () => {
+
+    
+    const [createType, setCreateType] = useState('');
+    const [isCreating, setIsCreating] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 //     const [createType, setCreateType] = useState('');
 //     const [isCreating, setIsCreating] = useState(false);
 //     const [isEditing, setIsEditing] = useState(false);
@@ -48,16 +78,17 @@ const App = () => {
     // if (!authToken) return <Auth />
 
     return (
+        
         <>
-        {/* <div className="app__wrapper">
+            {/* <div className="app__wrapper">
             <Chat client={client} theme="team light">
-                <ChannelListContainer 
+                <ChannelListContainer
                     isCreating={isCreating}
                     setIsCreating={setIsCreating}
                     setCreateType={setCreateType}
                     setIsEditing={setIsEditing}
                 />
-                <ChannelContainer 
+                <ChannelContainer
                     isCreating={isCreating}
                     setIsCreating={setIsCreating}
                     isEditing={isEditing}
@@ -70,12 +101,20 @@ const App = () => {
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
                 <Route path='/Bio' element = {<Bio/>}/>
-                <Route path='/AllTrips' element={<AllTrips/>}/>
+                <Route path='/AllTrips' element={<AllTrips groupName = {"Trips of friend and Community"}/>}/>
+                <Route path='/Notification' element={<Notifications/>}/>
                 <Route path='/MyTrip' element={<MyTrip/>}/>
                 <Route path='/Community/CommunityTrips' element={<CommunityTrips/>}/>
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
                 <Route path='/Home' element={<Home/>}/>
                 <Route path='/Profile' element={<Profile/>}/>
+                <Route path='/myProfile' element={<ProfilePage/>}/>
+                <Route path='/users/:user_id' element={<ProfilePage/>}/>
+                <Route path='/bio' element = {<Bio/>}/>
+                <Route path='/allTrips' element={<AllTrips/>}/>
+                <Route path='/myTrip' element={<MyTrip/>}/>
+                <Route path='/community/communityTrips' element={<CommunityTrips/>}/>
+                <Route path='/chatapp' element={<ChatApp/>} />
             </Routes>
         </Router>
         </>
