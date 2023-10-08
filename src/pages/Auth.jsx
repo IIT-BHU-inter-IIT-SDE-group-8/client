@@ -10,7 +10,7 @@ import Alert from "../components/Alert";
 
 const Auth1 = () => {
     const navigate = useNavigate();
-    const [alert, setAlert] = useState(false);
+    // const [alert, setAlert] = useState(false);
     const cookies = new Cookies();
     const location = useLocation();
     const signedUp = location.state?.signedUp;
