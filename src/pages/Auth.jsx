@@ -73,6 +73,15 @@ const Auth1 = () => {
                 const data = json.data;
                 cookies.set('authtoken', authToken);
                 cookies.set('data', data);
+                cookies.set("username", name)
+                cookies.set("fullName", name)
+                cookies.set("hashedPassword")
+                // id: cookies.get('userId'),
+                // name: cookies.get('username'),
+                // fullName: cookies.get('fullName'),
+                // image: cookies.get('avatarURL'),
+                // hashedPassword: cookies.get('hashedPassword'),
+                // phoneNumber: cookies.get('phoneNumber'),
                 // Redirect to the /Bio endpoint
                 if(isSignUp)
                 {
