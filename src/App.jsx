@@ -90,7 +90,7 @@ const App = () => {
                 <Route path='/Profile' element={<Profile/>}/>
                 <Route path='/Community' element={<Community/>}/>
                 <Route path='/MyCommunities' element={<MyCommunities/>}/>
-                <Route path='/map' element={<Map/>} />
+                <Route path='/map' element={<Map mode="road"/>} />
             </Routes>
         </Router>
         </>
