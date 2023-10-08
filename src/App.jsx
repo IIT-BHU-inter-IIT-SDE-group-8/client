@@ -19,6 +19,10 @@ import Notifications from './pages/Notifications';
 import { getCookieValue } from './components/cookieFunc';
 import ChatApp from './pages/ChatApp';
 import Home from './pages/Home';
+import Community from './pages/Community';
+import MyCommunities from './pages/Mycommunities';
+import Map from './components/Map';
+import { LocationProvider } from './contexts/LocationContext';
 
 const cookies = new Cookies();
 
@@ -67,6 +71,7 @@ const App = () => {
                 />
             </Chat>
         </div> */}
+        <LocationProvider>
         <Router>
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
@@ -80,8 +85,12 @@ const App = () => {
                 <Route path='/users/:user_id' element={<ProfilePage/>}/>
                 <Route path='/chatapp' element={<ChatApp/>} />
                 <Route path='/Home' element={<Home/>}/>
+                <Route path='/Community' element={<Community/>}/>
+                <Route path='/MyCommunities' element={<MyCommunities/>}/>
+                <Route path='/Map' element={<Map mode="train"/>} />
             </Routes>
         </Router>
+        </LocationProvider>
         </>
     );
 }
