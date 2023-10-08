@@ -19,53 +19,12 @@ import Notifications from './pages/Notifications';
 import { getCookieValue } from './components/cookieFunc';
 import ChatApp from './pages/ChatApp';
 
-const cookies = new Cookies();
-
-const apiKey = 'pqbq6waxtf2e';
-
-const authToken = cookies.get("token");
-
-const client = StreamChat.getInstance(apiKey);
-
-if(authToken) {
-    client.connectUser({
-        id: cookies.get('userId'),
-        name: cookies.get('username'),
-        fullName: cookies.get('fullName'),
-        image: cookies.get('avatarURL'),
-        hashedPassword: cookies.get('hashedPassword'),
-        phoneNumber: cookies.get('phoneNumber'),
-    }, authToken)
-}
-
 
 const App = () => {
-
-    
-    const [createType, setCreateType] = useState('');
-    const [isCreating, setIsCreating] = useState(false);
-    const [isEditing, setIsEditing] = useState(false);
 
     return (
         
         <>
-            {/* <div className="app__wrapper">
-            <Chat client={client} theme="team light">
-                <ChannelListContainer
-                    isCreating={isCreating}
-                    setIsCreating={setIsCreating}
-                    setCreateType={setCreateType}
-                    setIsEditing={setIsEditing}
-                />
-                <ChannelContainer
-                    isCreating={isCreating}
-                    setIsCreating={setIsCreating}
-                    isEditing={isEditing}
-                    setIsEditing={setIsEditing}
-                    createType={createType}
-                />
-            </Chat>
-        </div> */}
         <Router>
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>

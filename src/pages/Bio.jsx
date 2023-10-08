@@ -5,6 +5,7 @@ import authImage from '../assets/signup1.jpg'
 import logoImage from '../assets/logo.png'
 import { getCookieValue } from "../components/cookieFunc";
 import Alert from "../components/Alert";
+import Cookies from "universal-cookie";
 
 const Bio = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Bio = () => {
     //     }
     // }, [authToken, navigate]);
     const url = 'http://localhost:4000/users/bio';
+    const cookies = new Cookies();
 
     useEffect(() => {
         setTimeout(() => {
@@ -28,7 +30,7 @@ const Bio = () => {
     let requestData = {};
 
     const [formData, setFormData] = useState({
-        phone: 0,
+        phone: '',
         location: '',
         vehicle: '',
         bio: '',
@@ -74,6 +76,10 @@ const Bio = () => {
                 console.log("bio entered successfully");
 
                 navigate('/', { state: { signedUp: true } });
+                const json = await response.json();
+                cookies.sest("avatarURL", json.avatarURL)
+                cookies.set("phoneNumber", json.phoneNumber)
+                navigate('/');
 
             }
             else
