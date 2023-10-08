@@ -82,6 +82,13 @@ input::placeholder {
     cursor:pointer;
 }
 
+.error-message{
+    color: red;
+    font-size: 1vw;
+    margin: 0.1vw;
+    margin-left: 2vw;
+}
+
 @media screen and (max-width: 800px){
     .inputContainer{
         width: 100vw;
