@@ -77,7 +77,7 @@ const TripsCarousel = () => {
                 </div>
                 {
                     data.slice(currentIndex, currentIndex + 3).map((trip) => (
-                        <TripCarouselCard key={trip.trip_id} trip_name={trip.trip_name} />
+                        <TripCarouselCard key={trip.trip_id} trip_name={trip.trip_name} trip_to={trip.trip_destination} trip_on={trip.trip_departure_datetime} />
                     ))
                 }
                 <div onClick={handleNext} style={{ "cursor": "pointer" }} s>

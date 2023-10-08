@@ -3,22 +3,22 @@ import Profile from '../assets/Profile.jpeg'
 import SecondaryButton from './SecondaryButton';
 import PrimaryButton from './PrimaryButton';
 
-const TripCarouselCard = () => {
+const TripCarouselCard = ({trip_name, trip_to, trip_on}) => {
   return (
     <div className='carouselCard'>
                     <div className='UpperCarousel'>
                         <div style={{display: "flex", flexDirection: "column", paddingLeft: "10px"}}>
                             <img src={Profile} alt="Profile" className='profileImage'/>
-                            <span>Name</span>
+                            <span>{trip_name}</span>
                         </div>
                         <div className='rightCarousel'>
                             <div style={{display: "flex", flexDirection: "column"}}>
                                 <span>To</span>
-                                <span>Place</span>
+                                <span>{trip_to} </span>
                             </div>
                             <div style={{display: "flex", flexDirection: "column"}}>
                                 <span>On</span>
-                                <span>Date</span>
+                                <span>{trip_on} </span>
                             </div>
                         </div>
                     </div>
