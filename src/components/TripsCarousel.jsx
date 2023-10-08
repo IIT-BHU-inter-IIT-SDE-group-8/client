@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import TripCarouselCard from './TripCarouselCard';
+import Cookies from "universal-cookie";
+import { getCookieValue } from "../components/cookieFunc";
+
+
 
 
 
@@ -54,8 +58,21 @@ const TripsCarousel = () => {
             "trip_arrival_datetime": "2023-09-07T04:53:58.392Z"
         }])
 
+        const authToken = getCookieValue(document.cookie,'authtoken');
+  const userDataCookie = getCookieValue(document.cookie,'data');
+
+  const userData = JSON.parse(decodeURIComponent(userDataCookie));
+  const userId = userData.user.id;
+
+
     useEffect(() => {
-        fetch("http://localhost:8000/")
+        fetch(`http://localhost:8000/users/${userId}/trips`, {
+            method: "GET"
+        }).then(res => res.json()).then(res => {
+            setData(res)
+        }).catch(err => {
+            console.log(err);
+        })
     }, [])
 
     const [currentIndex, setCurrentIndex] = useState(0);
