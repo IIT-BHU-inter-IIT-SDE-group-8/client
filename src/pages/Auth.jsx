@@ -6,10 +6,12 @@ import logoImage from '../assets/logo.png';
 import gSignIn from '../assets/googleSignIn.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { getCookieValue } from "../components/cookieFunc";
+import Alert from "../components/Alert";
 
 const Auth1 = () => {
     // const authToken = getCookieValue(document.cookie, 'authtoken');
     const navigate = useNavigate();
+    const [alert, setAlert] = useState(false);
     // useEffect(() => {
     //     // Check if the user is already authenticated and redirect if necessary
     //     if (authToken) {
@@ -105,6 +107,7 @@ const Auth1 = () => {
 
     return (
         <div>
+            <Alert/>
             <div className="mainContainer">
                 <div className="imageContainer" style={{ backgroundColor: "black" }}>
                     <img className="imageContainer" src={authImage} alt="authImage" />
