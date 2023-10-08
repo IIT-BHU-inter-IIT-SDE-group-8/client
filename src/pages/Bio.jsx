@@ -4,6 +4,7 @@ import '../styles/imports/auth.css'
 import authImage from '../assets/signup1.jpg'
 import logoImage from '../assets/logo.png'
 import { getCookieValue } from "../components/cookieFunc";
+import Cookies from "universal-cookie";
 
 const Auth1 = () => {
     const navigate = useNavigate();
@@ -15,11 +16,12 @@ const Auth1 = () => {
     //     }
     // }, [authToken, navigate]);
     const url = 'http://localhost:4000/users/bio';
+    const cookies = new Cookies();
 
     let requestData = {};
 
     const [formData, setFormData] = useState({
-        phone: 0,
+        phone: '',
         location: '',
         vehicle: '',
         bio: '',
@@ -63,7 +65,9 @@ const Auth1 = () => {
 
             if(response.ok){
                 console.log("bio entered successfully");
-
+                const json = await response.json();
+                cookies.sest("avatarURL", json.avatarURL)
+                cookies.set("phoneNumber", json.phoneNumber)
                 navigate('/');
 
             }

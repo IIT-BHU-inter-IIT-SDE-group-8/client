@@ -3,6 +3,11 @@ import searchIcon from '../assets/search-interface-symbol.png';
 
 const SideFilterBar = ({handleFilterData, fetchAllTrips}) => {
 
+
+    const handleClick=()=>{
+        window.location.href="http://localhost:5000"
+    }
+
     const [inputData, setInputData] = useState({
         origin:'',
         destination:'',
@@ -40,6 +45,9 @@ const SideFilterBar = ({handleFilterData, fetchAllTrips}) => {
                 </div>
                 <div className="search" onClick={fetchAllTrips} style={{cursor:'pointer'}}>
                     <img onClick={fetchAllTrips} style={{height:'2vw'}} src={searchIcon} alt="search" />
+                </div>
+                <div>
+                    <button style={{cursor:"pointer", padding:"0.7vw", backgroundColor:"#8ab6e4", borderRadius:"10px", marginLeft:"10px"}} onClick={handleClick}>Predict</button>
                 </div>
             </div>
          </div>

@@ -19,57 +19,15 @@ import Notifications from './pages/Notifications';
 import { getCookieValue } from './components/cookieFunc';
 import ChatApp from './pages/ChatApp';
 
-const cookies = new Cookies();
-
-const apiKey = 'pqbq6waxtf2e';
-
-const authToken = cookies.get("token");
-
-const client = StreamChat.getInstance(apiKey);
-
-if(authToken) {
-    client.connectUser({
-        id: cookies.get('userId'),
-        name: cookies.get('username'),
-        fullName: cookies.get('fullName'),
-        image: cookies.get('avatarURL'),
-        hashedPassword: cookies.get('hashedPassword'),
-        phoneNumber: cookies.get('phoneNumber'),
-    }, authToken)
-}
-
 
 const App = () => {
-
-    
-    const [createType, setCreateType] = useState('');
-    const [isCreating, setIsCreating] = useState(false);
-    const [isEditing, setIsEditing] = useState(false);
 
     return (
         
         <>
-            {/* <div className="app__wrapper">
-            <Chat client={client} theme="team light">
-                <ChannelListContainer
-                    isCreating={isCreating}
-                    setIsCreating={setIsCreating}
-                    setCreateType={setCreateType}
-                    setIsEditing={setIsEditing}
-                />
-                <ChannelContainer
-                    isCreating={isCreating}
-                    setIsCreating={setIsCreating}
-                    isEditing={isEditing}
-                    setIsEditing={setIsEditing}
-                    createType={createType}
-                />
-            </Chat>
-        </div> */}
         <Router>
             <Routes>
                 <Route path='/' element = {<Auth1/>}/>
-<<<<<<< HEAD
                 <Route path='/Bio' element = {<Bio/>}/>
                 <Route path='/AllTrips' element={<AllTrips groupName = {"Trips of friend and Community"}/>}/>
                 <Route path='/Notification' element={<Notifications/>}/>
@@ -78,13 +36,6 @@ const App = () => {
                 <Route path='/trips/:trip_id' element={<TripPage/>}/>
                 <Route path='/myProfile' element={<ProfilePage/>}/>
                 <Route path='/users/:user_id' element={<ProfilePage/>}/>
-=======
-                <Route path='/bio' element = {<Bio/>}/>
-                <Route path='/allTrips' element={<AllTrips/>}/>
-                <Route path='/myTrip' element={<MyTrip/>}/>
-                <Route path='/community/communityTrips' element={<CommunityTrips/>}/>
-         
->>>>>>> 59bdb1fc04c91673c47b059226274ae2d3506c44
                 <Route path='/chatapp' element={<ChatApp/>} />
             </Routes>
         </Router>
