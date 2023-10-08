@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import '../Trip.css'
-import '../Modal.css'
 
 function ModalInputBox({closeModal, setDescriptionValue}) {
 

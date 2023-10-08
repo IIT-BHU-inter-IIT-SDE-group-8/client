@@ -1,5 +1,4 @@
 import React from "react";
-import '../Trip.css';
 import searchIcon from '../assets/search-interface-symbol.png';
 
 const SideFilterBar = () => {

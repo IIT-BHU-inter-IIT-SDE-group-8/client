@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import '../auth.css'
 import authImage from '../assets/signup1.jpg'
 import logoImage from '../assets/logo.png'
 

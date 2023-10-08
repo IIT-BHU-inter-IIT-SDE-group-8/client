@@ -1,6 +1,5 @@
 import React from "react";
-import BottomNavbar from "./BottomNavbar";
-import '../Trip.css';
+import BottomNavbar from "../components/BottomNavbar";
 import ProfilePicture from '../assets/Profile.jpeg'
 import messsage from '../assets/message.png'
 

@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import '../Trip.css'
 import Profile from '../assets/Profile.jpeg'
 import Modal from "./Modal";
 
