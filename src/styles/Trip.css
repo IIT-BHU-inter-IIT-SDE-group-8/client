@@ -30,8 +30,9 @@
     align-items: center;
     justify-content: center;
     height: 12vw;
-    width: 98vw;
+    width: 100vw;
     overflow-x: hidden;
+    overflow-y: hidden;
     background-color: #094c92;
     border-radius: 40px;
 }

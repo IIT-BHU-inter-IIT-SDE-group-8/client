@@ -1,5 +1,5 @@
 import React from "react";
-import '../Navbar.css';
+import '../styles/Navbar.css';
 import TripIcon from '../assets/airplane.png';
 import HomeIcon from '../assets/home.png';
 import CommunityIcon from '../assets/group.png'

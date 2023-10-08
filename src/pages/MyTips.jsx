@@ -1,6 +1,6 @@
 import React from "react";
-import CreateTripBar from "./createTripBar";
-import Trip from "./trip";
+import CreateTripBar from "../components/createTripBar";
+import Trip from "../components/trip";
 
 const MyTrip = () => {
     return (

@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import '../Trip.css'
+import '../styles/Trip.css'
 import Profile from '../assets/Profile.jpeg'
 import Modal from "./Modal";
+import PrimaryButton from "./SecondaryButton";
+import SecondaryButton from "./PrimaryButton";
 
 const Trip = ({origin, destination, desc, arrival, departure}) => {
     const [showModal, setShowModal] = useState(false);
@@ -24,8 +26,8 @@ const Trip = ({origin, destination, desc, arrival, departure}) => {
             </div>
             <div className="Info"></div>
             <div className="ButtonsContainer">
-                <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#93c7fd', cursor: "pointer", border:'0px'}} onClick={()=>setShowModal(true)}><p className="buttonText">Info</p></button>
-                <button style={{margin: '0.7vw', height: '3vw', width: '6vw', borderRadius: '8px', backgroundColor: '#005fc2', cursor:'pointer', border:'0px'}}><p className="buttonText">Join</p></button>
+                <PrimaryButton text={"Info"} setShowModal={setShowModal}/>
+                <SecondaryButton text={"Join"}/>
             </div>
         </div>
         {showModal && <Modal closeModal = {closeShowModal} desc = {desc}/>}

@@ -1,8 +1,8 @@
 import React from "react";
-import Trip from "./trip";
-import '../Trip.css'
-import SideFilterBar from "./SideFilterBar";
-import BottomNavbar from './BottomNavbar';
+import Trip from "../components/trip";
+import '../styles/Trip.css'
+import SideFilterBar from "../components/SideFilterBar";
+import BottomNavbar from '../components/BottomNavbar';
 
 const AllTrips = () => {
 

@@ -1,6 +1,6 @@
 import React from "react";
-import SideFilterBar from "./SideFilterBar";
-import Trip from "./trip";
+import SideFilterBar from "../components/SideFilterBar";
+import Trip from "../components/trip";
 
 const CommunityTrips = () => {
     return(
