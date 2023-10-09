@@ -1,0 +1,40 @@
+#CommunityPage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 200px;
+    overflow-x: hidden;
+}
+
+#CommunityImage {
+    width: 100vw;
+    border-radius: 20px;
+    background-color: gray;
+    margin-bottom: 10px;
+    padding: 100px;
+}
+
+#CommunityBottom {
+    width: 80vw;
+    height: 100%;
+}
+
+#communityDesc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.communityInputContainer {
+    display: flex;
+    width: 60vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.participant {
+    background-color: #f9f9f9;
+    margin: 5px;
+}

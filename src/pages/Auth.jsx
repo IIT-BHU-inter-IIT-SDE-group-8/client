@@ -9,15 +9,8 @@ import { getCookieValue } from "../components/cookieFunc";
 import Alert from "../components/Alert";
 
 const Auth1 = () => {
-    // const authToken = getCookieValue(document.cookie, 'authtoken');
     const navigate = useNavigate();
     // const [alert, setAlert] = useState(false);
-    // useEffect(() => {
-    //     // Check if the user is already authenticated and redirect if necessary
-    //     if (authToken) {
-    //         navigate('/myProfile');
-    //     }
-    // }, [authToken, navigate]);
     const cookies = new Cookies();
     const location = useLocation();
     const signedUp = location.state?.signedUp;
